@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "LYhXMCN37bdoJpxmScsDp61HTabwmdf/DY8snPJMz/0=",
+  "Source": "FakeStoreUI",
+  "BasePath": "_content/FakeStoreUI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "FakeStoreUI\\wwwroot",
+      "Source": "FakeStoreUI",
+      "ContentRoot": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\UI\\FakeStore.UI\\wwwroot\\",
+      "BasePath": "_content/FakeStoreUI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

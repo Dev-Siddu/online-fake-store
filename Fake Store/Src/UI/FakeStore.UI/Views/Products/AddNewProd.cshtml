@@ -1,0 +1,61 @@
+﻿@model Models.DTO.AddProductDTO;
+@{
+    ViewBag.Title = "Add New Product";
+}
+<div>
+    @if (ViewBag.Response != null)
+    {
+        @if (@ViewBag.Response == 0)
+        {
+            <h3 class="text-danger text-center">Some Internall error occured</h3>
+        }
+        else if (ViewBag.Response == 1)
+        {
+            <h3 class="text-success text-center">Product added successfully</h3>
+        }
+    }
+    <form method="post" asp-action="AddNewProd" asp-controller="Products" enctype="multipart/form-data">
+    
+    <table class="table w-75">
+        <tbody>
+            <tr>
+                <td>
+                    <label asp-for="@Model.Name" class="form-label"></label>
+                </td>
+                <td>
+                    <input type="text" asp-for="@Model.Name" maxlength="15" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="@Model.Description" class="form-label"></label>
+                </td>
+                <td>
+                    <input type="text" asp-for="@Model.Description" maxlength="50" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="@Model.Price" class="form-label"></label>
+                </td>
+                <td>
+                    <input type="number" asp-for="@Model.Price" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label asp-for="@Model.ImageFile" class="form-label"></label>
+                </td>
+                <td>
+                    <input type="file" asp-for="@Model.ImageFile" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" class="btn btn-primary w-100" value="Add product"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</div>

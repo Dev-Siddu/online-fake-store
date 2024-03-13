@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FakeStore.UI.props" />
+</Project>

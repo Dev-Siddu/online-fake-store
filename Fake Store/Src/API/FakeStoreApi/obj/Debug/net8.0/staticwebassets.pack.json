@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\wwwroot\\Product_Images\\BagPack.jpg",
+      "PackagePath": "staticwebassets\\Product_Images\\BagPack.jpg"
+    },
+    {
+      "Id": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\wwwroot\\Product_Images\\Cloths.jpg",
+      "PackagePath": "staticwebassets\\Product_Images\\Cloths.jpg"
+    },
+    {
+      "Id": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\wwwroot\\Product_Images\\KeyChain.jpg",
+      "PackagePath": "staticwebassets\\Product_Images\\KeyChain.jpg"
+    },
+    {
+      "Id": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\wwwroot\\Product_Images\\Laptop.jpg",
+      "PackagePath": "staticwebassets\\Product_Images\\Laptop.jpg"
+    },
+    {
+      "Id": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\wwwroot\\Product_Images\\LiquorSetd85f57b4-5e2f-431a-bacf-d6243b4d3a2c.jpg",
+      "PackagePath": "staticwebassets\\Product_Images\\LiquorSetd85f57b4-5e2f-431a-bacf-d6243b4d3a2c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\wwwroot\\Product_Images\\Mobile.jpg",
+      "PackagePath": "staticwebassets\\Product_Images\\Mobile.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FakeStoreApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.FakeStoreApi.props",
+      "PackagePath": "build\\FakeStoreApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.FakeStoreApi.props",
+      "PackagePath": "buildMultiTargeting\\FakeStoreApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.FakeStoreApi.props",
+      "PackagePath": "buildTransitive\\FakeStoreApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

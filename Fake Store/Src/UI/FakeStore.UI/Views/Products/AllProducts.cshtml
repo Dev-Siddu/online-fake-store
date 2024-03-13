@@ -1,0 +1,58 @@
+﻿@model List<Models.Entities.Product>;
+@{
+    ViewBag.Title = "Products";
+    <style>
+        // * {
+            // border: 1px solid green;
+            // padding: 5px;
+            // margin: 2px;
+            //
+        }
+
+        // .scaleImg:hover {
+            // position: absolute;
+            // height: 500px;
+            // width: 400px;
+            //
+        }
+
+        .prd-shadow {
+            box-shadow: 0px 5px 5px grey;
+        }
+
+        .f-bold {
+            font-weight: bolder;
+        }
+    </style>
+}
+
+<div>
+    @foreach (var product in Model)
+    {
+        <div class="container w-75 m-3 p-3 prd-shadow">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-around w-75 w-md-100 ">
+                        <img class="img-fluid" src="@product.ImagePath" width="250" alt="Image not found / loaded" />
+                        <div class="row w-50 fs-3">
+                            <div class="col-12 f-bold">@product.Name</div>
+                            <div class="col-12">@product.Description</div>
+                            @if (product.Rating != null)
+                            {
+                                <div class="col-12">
+                                    <span>@product.Rating.Rate <b class="text-success">&#9733;</b> </span> &nbsp;
+                                    <span>[ @product.Rating.count ]</span>
+                                </div>
+                            }
+                            
+                        </div>
+                        <div class="fs-3 ">
+                            <div class="col-12 text-primary">&#8377;@product.Price</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

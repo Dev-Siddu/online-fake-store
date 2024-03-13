@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "FakeStoreApi.csproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      },
+      {
+        "Name": "..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
