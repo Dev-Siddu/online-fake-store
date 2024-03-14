@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj": {}
+    "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj": {}
   },
   "projects": {
-    "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj": {
+    "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\Siddu\\.nuget\\packages\\",
-        "outputPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\obj\\",
+        "projectPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\siddarood\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Siddu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\siddarood\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,21 +70,17 @@
         }
       }
     },
-    "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj": {
+    "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj",
+        "projectUniqueName": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj",
         "projectName": "FakeStoreUI",
-        "projectPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj",
-        "packagesPath": "C:\\Users\\Siddu\\.nuget\\packages\\",
-        "outputPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\obj\\",
+        "projectPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\FakeStoreUI.csproj",
+        "packagesPath": "C:\\Users\\siddarood\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Siddu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\siddarood\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -102,8 +94,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj": {
-                "projectPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj"
+              "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj"
               }
             }
           }

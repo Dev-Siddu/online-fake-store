@@ -11,7 +11,6 @@
         }
     </style>
 }
-
 <div>
     @foreach (var product in Model)
     {
@@ -36,7 +35,7 @@
                         </div>
                         <div class="fs-3">
                             @* Remove Button  *@
-                            <a class="btn btn-danger" asp-action="RemoveProduct" asp-controller="Products" asp-route-ID="product.ID" asp-route-Name="@product.Name" asp-route-Price="@product.Price" asp-route-ImagePath="@product.ImagePath">Remove</a>
+                            <a class="btn btn-danger" asp-action="RemovingProductCompleteDetails" asp-controller="Products" asp-route-ID="@product.ID" asp-route-Name="@product.Name" asp-route-Price="@product.Price" asp-route-ImagePath="@product.ImagePath">Remove</a>
                         </div>
                     </div>
                 </div>
