@@ -952,19 +952,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\siddarood\\.nuget\\packages\\": {}
+    "C:\\Users\\Siddu\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\FakeStoreApi.csproj",
+      "projectUniqueName": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\FakeStoreApi.csproj",
       "projectName": "FakeStoreApi",
-      "projectPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\FakeStoreApi.csproj",
-      "packagesPath": "C:\\Users\\siddarood\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\API\\FakeStoreApi\\obj\\",
+      "projectPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\FakeStoreApi.csproj",
+      "packagesPath": "C:\\Users\\Siddu\\.nuget\\packages\\",
+      "outputPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\siddarood\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Siddu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -978,8 +983,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\AllModels\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\VS Code Practice\\E-Commerce Like\\Fake Store\\Src\\AllModels\\Models\\Models.csproj"
+            "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj": {
+              "projectPath": "D:\\FakeStore\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\Models.csproj"
             }
           }
         }

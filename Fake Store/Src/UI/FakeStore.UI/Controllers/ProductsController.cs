@@ -80,22 +80,30 @@ namespace FakeStore.UI.Controllers
             return View(new AddProductDTO());
         }
 
-        /*
-        [NonAction]
-        public async Task<MultipartFormDataContent> SerilizeModel(AddProductDTO prod)
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<IActionResult> RemoveProd()
         {
-            var formData = new MultipartFormDataContent();
-            
-            formData.Add(new StringContent(prod.Name, Encoding.UTF8, MediaTypeNames.Text.Plain),"Name");
-            formData.Add(new StringContent(prod.Description, Encoding.UTF8, MediaTypeNames.Text.Plain), "Description");
-            formData.Add(new StringContent(prod.Price.ToString(), Encoding.UTF8, MediaTypeNames.Text.Plain), "Price");
+            HttpClient client = _httpClientFactory.CreateClient(); // HttpClient created.
+            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("http://localhost:5035/api/FakeStore/Products")
+            };
+            HttpResponseMessage response = await client.SendAsync(requestMessage);
+            string content = await response.Content.ReadAsStringAsync();
+            //var products = JsonSerializer.Deserialize<List<Product>>(content);
+            var products = JsonConvert.DeserializeObject<List<Product>>(content);
 
-            var FileContent = new StreamContent(prod.ImageFile.OpenReadStream());
-            FileContent.Headers.ContentType = MediaTypeHeaderValue.Parse(MediaTypeNames.Image.Jpeg);
-
-            formData.Add(FileContent,"product_picture",prod.ImageFile.FileName);
-            return formData;
+            return View(products);
         }
-        */
+
+        [HttpDelete]
+        [Route("[Action]")]
+        public async Task<IActionResult> RemoveProduct([FromQuery]RemoveProductDTO prod)
+        {
+            Console.WriteLine("Hello");
+            return View();
+        }
     }
 }

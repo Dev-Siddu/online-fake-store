@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.DTO;
-using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Collections.Specialized;
 
 namespace FakeStoreApi.Controllers
 {
@@ -20,7 +20,7 @@ namespace FakeStoreApi.Controllers
         [Route("Products")]
         public async Task<List<Product?>> Products()
         {
-            List<Product>? products = await getDSeriProducts();
+            List<Product>? products = await getDSeriProductsAsync();
             return products;
         }
 
@@ -43,7 +43,7 @@ namespace FakeStoreApi.Controllers
             
 
             // Getting the all the products
-            List<Product> products = await getDSeriProducts();
+            List<Product> products = await getDSeriProductsAsync();
 
             long lastId = products.Max(temp => temp.ID);    // last used id
 
@@ -56,13 +56,38 @@ namespace FakeStoreApi.Controllers
             prod.ImagePath = "http://localhost:5035/" + "Product_Images/" + FileName;
 
             products.Add(prod);
-            bool result = await SerilizaAndSaveProds(products);
+            bool result = await SerilizaAndSaveProdsAsync(products);
             if (result) return Ok();
             return StatusCode(500);
         }
 
+        [HttpDelete]
+        [Route("[Action]")]
+        public async Task<IActionResult> RemoveProduct(RemoveProductDTO prod)
+        {
+            List<Product> products = await getDSeriProductsAsync();
+            int count = products.RemoveAll(temp =>
+            {
+                if (temp.ID == prod.ID && temp.Name == prod.Name && temp.Price == prod.Price && temp.ImagePath == prod.ImagePath)
+                {
+                    return true;
+                };
+                return false;
+            });
+            if(!(count > 0))
+            {
+                return NotFound();
+            }
+            //Remove the image
+            string path = prod.ImagePath.Replace("http://localhost:5035","wwwroot");
+            System.IO.File.Delete(path);
+            bool isSaved = await SerilizaAndSaveProdsAsync(products);
+            if (isSaved) return Ok();
+            else return StatusCode(500);
+        }
+
         [NonAction]
-        public async Task<List<Product>?> getDSeriProducts()
+        public async Task<List<Product>?> getDSeriProductsAsync()
         {
             string productsPath = "DataStore/ProductsInformation.json";
             string json = await System.IO.File.ReadAllTextAsync(productsPath);
@@ -70,7 +95,7 @@ namespace FakeStoreApi.Controllers
             return prods;
         }
         [NonAction]
-        public async Task<bool> SerilizaAndSaveProds(List<Product> prods)
+        public async Task<bool> SerilizaAndSaveProdsAsync(List<Product> prods)
         {
             string productsPath = "DataStore/ProductsInformation.json";
             string serilizedProds = JsonSerializer.Serialize(prods);
