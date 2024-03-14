@@ -49,5 +49,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FakeStoreApi.Controllers.FakeStoreController",
+    "Method": "RemoveProduct",
+    "RelativePath": "api/FakeStore/RemoveProduct",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "Models.DTO.RemoveProductDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
