@@ -1,0 +1,118 @@
+﻿@model Models.Entities.Product;
+@{
+    <style>
+        .box-shadow{
+            box-shadow : 0px 0px 25px black;
+        }
+
+        #imgclick > input{
+            cursor:pointer;
+        }
+    </style>
+}
+
+<div class="container p-3 mt-3">
+    <div class="row">
+        <div class="col">
+            <img src="@Model.ImagePath" class="img-fluid h-50"/>
+        </div>
+        <div class="col">
+            <form method="post" asp-action="FinallyRemoveProduct" asp-controller="Products" class="w-100">
+                <div class="container ">
+                    <table class="table table-borderless table-responsive table-center">
+                        <thead class="fs-3">
+                            <tr>
+                                <th scope="col">Product fields</th>
+                                <th scope="col">Details </th>
+                            </tr>
+                        </thead>
+                        <tbody class="fs-5 bold">
+                            <tr>
+                                <th scope="row">ID</th>
+                                <td>
+                                    <input type="text" asp-for="@Model.ID" class="form-control" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td>
+                                    <input type="text" asp-for="@Model.Name" class="form-control" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Description</th>
+                                <td>
+                                    <textarea rows="2" class="form-control" readonly>@Model.Description</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Image</th>
+                                <td id="imgclick">
+                                    <input type="text" class="form-control" asp-for="@Model.ImagePath" title="click to view the full image" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Price</th>
+                                <td>
+                                    <input type="number" class="form-control" asp-for="@Model.Price" readonly />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Rating</th>
+                                <td>
+                                    @if (Model.Rating != null)
+                                    {
+                                        <table class="table table-borderless">
+                                            <tr>
+                                                <th scope="row">Ratings</th>
+                                                <td>
+                                                    <input type="number" asp-for="@Model.Rating.Rate)" class="form-control" readonly />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Count</th>
+                                                <td>
+                                                    <input type="number" asp-for="@Model.Rating.count)" class="form-control" readonly />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <span>Not available</span>
+                                        <input type="hidden" asp-for="@Model.Rating" />
+                                    }
+                                </td>
+                            </tr>
+                            @* Here add more details if needed ( above delete button )*@
+
+
+                            @* Delete button *@
+                            <tr class="">
+                                <td colspan="2" class="text-center">
+                                    <input type="submit" value="Delete" class="btn btn-danger w-50 fs-4" />
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded',function(){
+        let link = document.querySelector("#imgclick > input");
+        link.addEventListener('click', function () {
+            let val = link.value;
+            window.open(val);
+        })
+    });
+
+    
+</script>
+
