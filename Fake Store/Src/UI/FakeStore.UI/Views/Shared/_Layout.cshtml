@@ -4,63 +4,89 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+
+    @* MainStysheet css link *@
+    <link rel="stylesheet" href="~/Css/MainStyleSheet.css" />
+    @* Sidebar css *@
+    <link href="~/Css/Sidebar.css" rel="stylesheet" />
     @* BootStrap CDN Links *@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     @* Bootstrap Icons *@
-    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @* Js FIle  *@
+    <script src="~/Js/Scripts.js"></script>
     <style>
-        .bg-teal{
+        .bg-teal {
             background-color: teal;
-            padding:0.5%;
+            padding: 0.5%;
         }
-        .brand-shadow{
+
+        .brand-shadow {
             text-shadow: 0px 0px 15px white;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid bg-teal ">
-                <a class="navbar-brand fs-3" href="#">
-                    <h2 class="brand-shadow fs-1">
-                    <span class="text-danger">Fake</span><span class="text-success">Store</span>
-                    </h2>
+    <!-- Side bar start -->
+    @{
+        await Html.RenderPartialAsync("Partial_Views/SidebarPartialView.cshtml");
+    }
+    <!-- Side bar end -->
+
+    <div class="body-content" id="body-content">
+        <!-- Header nav bar Start -->
+        <header class="header">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
+                <div class="container-fluid bg-teal mt-0">
+                    <a class="navbar-brand fs-3" href="#">
+                        <h2 class="brand-shadow fs-1">
+                            <div class="hamberger-container" id="hamberger">
+                                <i class="bi bi-list"></i>
+                            </div>
+                            <span class="text-danger">Fake</span><span class="text-success">Store</span>
+                        </h2>
                     </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse fs-4" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="~/Products/AllProducts">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="~/Products/AddNewProd">Add new product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="~/Products/RemoveProd">Remove product</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-danger" type="submit">Search</button>
-                    </form>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse fs-4" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="~/Products/AllProducts">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="~/Products/AddNewProd">Add new product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="~/Products/RemoveProd">Remove product</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex search-field" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-danger" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Header nav bar end -->
+        <!-- Main Content start -->
+        <section class="main-content d-flex justify-content-center w-100">
+            @RenderBody()
+        </section>
+        <!-- Main Content end -->
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid bg-dark text-white text-center p-3 m-1">
+                <h4>Choose the best products from here</h4>
+                <div>
+                    <button type="submit" class="btn btn-success">Contact Us</button>
                 </div>
             </div>
-        </nav>
-    </header>
-    <section>
-        @RenderBody()
-    </section>
-    <footer>
-        <div class="container-fluid bg-dark text-white text-center p-3 m-1">
-            <h4>Choose the best products from here</h4>
-            <div>
-                <button type="submit" class="btn btn-success">Contact Us</button>
-            </div>
-        </div>
-    </footer>
+        </footer>
+        <!-- Footer End -->
+    </div>
+
 </body>
 </html>
