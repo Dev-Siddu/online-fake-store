@@ -35,7 +35,7 @@ namespace FakeStore.UI.Controllers
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("http://localhost:5035/api/FakeStore/Products")
+                RequestUri = new Uri("http://localhost:5035/api/FakeStore/AllProducts")
             };
             HttpResponseMessage response = await client.SendAsync(requestMessage);
             string content = await response.Content.ReadAsStringAsync();
@@ -62,14 +62,13 @@ namespace FakeStore.UI.Controllers
             HttpClient client = _httpClientFactory.CreateClient(); // HttpClient Created
 
             // Formatting the content of model
-            addProd.Name = addProd.Name.Trim().Replace(" ", "");
-            addProd.Description = addProd.Description.Trim().Replace(" ", "");
+            //addProd.ImageFile = addProd.ImageFile.F.Trim().Replace(" ","");
 
             var formData = new MultipartFormDataContent();
             formData.Add(new StringContent(addProd.Name, System.Text.Encoding.UTF8), "Name");
             formData.Add(new StringContent(addProd.Description.Trim(), System.Text.Encoding.UTF8), "Description");
             formData.Add(new StringContent(addProd.Price.ToString().Trim(), System.Text.Encoding.UTF8), "Price");
-            formData.Add(new StreamContent(addProd.ImageFile.OpenReadStream()), "ImageFile", addProd.ImageFile.FileName);
+            formData.Add(new StreamContent(addProd.ImageFile.OpenReadStream()), "ImageFile", addProd.ImageFile.FileName.Trim().Replace(" ",""));
             HttpResponseMessage response = await client.PostAsync("http://localhost:5035/api/FakeStore/AddProduct", formData);
             if (!response.IsSuccessStatusCode)
             {
@@ -88,7 +87,7 @@ namespace FakeStore.UI.Controllers
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("http://localhost:5035/api/FakeStore/Products")
+                RequestUri = new Uri("http://localhost:5035/api/FakeStore/AllProducts")
             };
             HttpResponseMessage response = await client.SendAsync(requestMessage);
             string content = await response.Content.ReadAsStringAsync();
@@ -142,19 +141,19 @@ namespace FakeStore.UI.Controllers
             HttpResponseMessage response = await client.SendAsync(requestMessage);
             if (response.IsSuccessStatusCode)
             {
-                return Ok();
+                return LocalRedirect("~/Products/AllProducts");
             }
-            return StatusCode(500);
+            return Content("<h3>Couldn't remove the product. Some internal server error occured. Contact admin</h3>", "text/html");
         }
 
         [NonAction]
-        public async Task<List<Product>?> GetProductsAsync()
+        private async Task<List<Product>?> GetProductsAsync()
         {
             HttpClient client = _httpClientFactory.CreateClient(); // HttpClient created.
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("http://localhost:5035/api/FakeStore/Products")
+                RequestUri = new Uri("http://localhost:5035/api/FakeStore/AllProducts")
             };
             HttpResponseMessage response = await client.SendAsync(requestMessage);
             string content = await response.Content.ReadAsStringAsync();

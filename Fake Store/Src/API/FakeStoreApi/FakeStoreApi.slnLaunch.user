@@ -4,8 +4,7 @@
     "Projects": [
       {
         "Name": "FakeStoreApi.csproj",
-        "Action": "Start",
-        "DebugTarget": ""
+        "Action": "Start"
       },
       {
         "Name": "..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj",

@@ -11,17 +11,47 @@ namespace FakeStoreApi.Controllers
     public class FakeStoreController : ControllerBase
     {
         private readonly ILogger<FakeStoreController> _logger;
+        private static List<Product>? Products = null;
+
         public FakeStoreController(ILogger<FakeStoreController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        [Route("Products")]
-        public async Task<List<Product?>> Products()
+        [Route("AllProducts")]
+        public async Task<List<Product?>> AllProducts()
         {
-            List<Product>? products = await getDSeriProductsAsync();
-            return products;
+            if (Products == null)
+            {
+                Products = await getDSeriProductsAsync();
+            }
+            return Products;
+        }
+
+        [HttpGet]
+        [Route("GetProductByID")]
+        public async Task<Product?> GetProductByID(int id)
+        {
+            if (Products == null)
+            {
+                Products = await getDSeriProductsAsync();
+            }
+            Product? prod = Products?.FirstOrDefault(temp => temp.ID == id);
+            if (prod == null) return null;
+            return prod;
+        }
+        [HttpGet]
+        [Route("SearchProducts")]
+        public async Task<List<Product>?> SearchProducts(string search)
+        {
+            if (Products == null)
+            {
+                Products = await getDSeriProductsAsync();
+            }
+            List<Product>? prods = Products?.Where(temp => temp.Name.Contains(search,StringComparison.OrdinalIgnoreCase)).ToList();
+            if (prods == null) return null;
+            return prods;
         }
 
         [HttpPost]
@@ -35,28 +65,34 @@ namespace FakeStoreApi.Controllers
             //if (!ModelState.IsValid) return BadRequest();
             // Save the image
             string extension = Path.GetExtension(addprod.ImageFile.FileName);
-            string FileName = addprod.Name + Guid.NewGuid().ToString() + extension;
-            string path = "wwwroot/Product_Images/" + FileName ;
+            string prodImagePath = addprod.Name.Trim().Replace(" ","") + Guid.NewGuid().ToString() + extension;
+            string path = "wwwroot/Product_Images/" + prodImagePath ;
             var stream = System.IO.File.Create(path);
             await addprod.ImageFile.CopyToAsync(stream);
             stream.Close();
-            
+
 
             // Getting the all the products
-            List<Product> products = await getDSeriProductsAsync();
+            if (Products == null)
+            {
+                Products = await getDSeriProductsAsync();
+            }
+            //List<Product> products = await getDSeriProductsAsync();
 
-            long lastId = products.Max(temp => temp.ID);    // last used id
+            long lastId = Products.Max(temp => temp.ID);    // last used id
 
             // Product to add to list
-            Product prod = new Product();
-            prod.ID = lastId + 1;
-            prod.Name = addprod.Name;
-            prod.Price = addprod.Price;
-            prod.Description = addprod.Description;
-            prod.ImagePath = "http://localhost:5035/" + "Product_Images/" + FileName;
+            Product prod = addprod.toProduct(lastId + 1, prodImagePath);
 
-            products.Add(prod);
-            bool result = await SerilizaAndSaveProdsAsync(products);
+            //Product prod = new Product();
+            //prod.ID = lastId + 1;
+            //prod.Name = addprod.Name;
+            //prod.Price = addprod.Price;
+            //prod.Description = addprod.Description;
+            //prod.ImagePath = "http://localhost:5035/" + "Product_Images/" + prodImagePath;
+
+            Products.Add(prod);
+            bool result = await SerilizaAndSaveProdsAsync(Products);
             if (result) return Ok();
             return StatusCode(500);
         }
@@ -65,8 +101,12 @@ namespace FakeStoreApi.Controllers
         [Route("[Action]")]
         public async Task<IActionResult> RemoveProduct(RemoveProductDTO prod)
         {
-            List<Product> products = await getDSeriProductsAsync();
-            int count = products.RemoveAll(temp =>
+            //List<Product> products = await getDSeriProductsAsync();
+            if (Products == null)
+            {
+                Products = await getDSeriProductsAsync();
+            }
+            int count = Products.RemoveAll(temp =>
             {
                 if (temp.ID == prod.ID && temp.Name == prod.Name && temp.Price == prod.Price && temp.ImagePath == prod.ImagePath)
                 {
@@ -81,7 +121,7 @@ namespace FakeStoreApi.Controllers
             //Remove the image
             string path = prod.ImagePath.Replace("http://localhost:5035","wwwroot");
             System.IO.File.Delete(path);
-            bool isSaved = await SerilizaAndSaveProdsAsync(products);
+            bool isSaved = await SerilizaAndSaveProdsAsync(Products);
             if (isSaved) return Ok();
             else return StatusCode(500);
         }
@@ -101,6 +141,13 @@ namespace FakeStoreApi.Controllers
             string serilizedProds = JsonSerializer.Serialize(prods);
             await System.IO.File.WriteAllTextAsync(productsPath,serilizedProds);
             return true;
+        }
+
+        [NonAction]
+        public async Task<List<Product>?> loadProducts()
+        {
+            List<Product>? prods = await getDSeriProductsAsync();
+            return Products;
         }
     }
 }

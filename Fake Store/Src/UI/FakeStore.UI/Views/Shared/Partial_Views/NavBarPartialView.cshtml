@@ -1,0 +1,98 @@
+﻿@{
+    <style>
+        .prd-shadow {
+            box-shadow: 0px 5px 5px grey;
+        }
+    </style>
+}
+<header class="header">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
+        <div class="container-fluid bg-teal mt-0">
+            <a class="navbar-brand fs-3" href="#">
+                <h2 class="brand-shadow fs-1">
+                    <div class="hamberger-container" id="hamberger">
+                        <i class="bi bi-list"></i>
+                    </div>
+                        <span class="text-danger">Fake</span><span class="text-success">Store</span>
+                </h2>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse fs-4" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Add new Menu -->
+                </ul>
+                <div class="d-flex search-field" role="search">
+                    <input class="form-control me-2" id="searchText" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-danger" type="button" onclick="search()" id="searchBtn">Search</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script type="text/javascript">
+
+    function search() {
+        let searchText = document.querySelector('#searchText').value;
+        if (searchText === '') {
+            console.log('Please enter something in the search text');
+
+        }
+        else {
+            var httpRequest = new XMLHttpRequest();
+            var url = `http://localhost:5035/api/FakeStore/SearchProducts?search=${searchText}`;
+            http://localhost:5035/api/FakeStore/SearchProduct?search=ther
+            // var url2 = `http://localhost:5035/api/FakeStore/AllProducts`;
+            httpRequest.open("GET", url, false); // false for synchronous request
+            httpRequest.send(); // Sending the httpRequest
+            var response = httpRequest.responseText;
+            console.log(response);
+            if (response != null || response != '' || response != undefined) {
+                var jsonParsedResponse = JSON.parse(response);  // Parsing to JSON
+                console.log(jsonParsedResponse);
+
+                // // Rendering into the mainContent section
+                let mainContentSection = document.querySelector('section#mainContent');
+                mainContentSection.innerHTML = '';  // clear the section
+
+                for (let i of jsonParsedResponse) {
+                    let sectionContent = `
+                                            <div class="container w-75 m-3 p-3 prd-shadow">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="d-flex justify-content-around w-100 w-md-100 ">
+                                                            <img class="img-fluid mr-3" src=${i["imagePath"]} width="250" alt="Image not found / loaded" />
+                                                            <div class="row w-50 fs-3"> ${i["name"]}
+                                                                    <div class="col-12 f-bold">${i["description"]}</div>
+                                                                    `;
+
+                    if (i["rating"] != null) {
+                        sectionContent += `
+                                    <div class="col-12">
+                                           <span>${i["rating"]["rate"]} <b class="text-success">&#9733;</b> </span> &nbsp;
+                                           <span>[ ${i["rating"]["count"]} ]</span>
+                                    </div>
+                                                `;
+                    }
+                    sectionContent += `
+                                    </div>
+                                    <div class="fs-3 ">
+                                                    <div class="col-12 text-primary">&#8377;${i["price"]}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    mainContentSection.classList.toggle('flex-direction-column')
+                    mainContentSection.innerHTML += sectionContent;
+                    // // End
+                    console.log('*** -------------- *********');
+                }
+            }
+
+        }
+    }
+</script>

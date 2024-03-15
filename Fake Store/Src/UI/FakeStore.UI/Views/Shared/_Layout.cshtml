@@ -36,49 +36,20 @@
 
     <div class="body-content" id="body-content">
         <!-- Header nav bar Start -->
-        <header class="header">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
-                <div class="container-fluid bg-teal mt-0">
-                    <a class="navbar-brand fs-3" href="#">
-                        <h2 class="brand-shadow fs-1">
-                            <div class="hamberger-container" id="hamberger">
-                                <i class="bi bi-list"></i>
-                            </div>
-                            <span class="text-danger">Fake</span><span class="text-success">Store</span>
-                        </h2>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse fs-4" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="~/Products/AllProducts">Products</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="~/Products/AddNewProd">Add new product</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="~/Products/RemoveProd">Remove product</a>
-                            </li>
-                        </ul>
-                        <form class="d-flex search-field" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-danger" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </header>
+        @{
+            await Html.RenderPartialAsync("Partial_Views/NavBarPartialView.cshtml");
+        }
         <!-- Header nav bar end -->
+
         <!-- Main Content start -->
-        <section class="main-content d-flex justify-content-center w-100">
+        <section class="main-content w-100" id="mainContent">
             @RenderBody()
         </section>
         <!-- Main Content end -->
+
         <!-- Footer Start -->
         <footer class="footer">
-            <div class="container-fluid bg-dark text-white text-center p-3 m-1">
+            <div class="bg-dark text-white text-center p-3">
                 <h4>Choose the best products from here</h4>
                 <div>
                     <button type="submit" class="btn btn-success">Contact Us</button>

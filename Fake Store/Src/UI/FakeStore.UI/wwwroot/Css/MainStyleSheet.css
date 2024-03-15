@@ -1,24 +1,35 @@
-﻿body {
+﻿
+body {
     margin: 0%;
     padding : 0%;
     box-sizing: border-box;
-
     width : 100%;
     height : 100vh;
+    overflow: auto;
 }
+
+.body-content {
+    width: inherit;
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
 /*Header */
 .header{
-    height:10vh;
+    position : fixed;
+    top: 0%;
+    width: inherit;
+    height: 8vh;
 }
 
 /* Footer */
 .footer {
-    height: 10vh;
+    width: inherit;
 }
 
 /*Hamberger*/
 .hamberger-container {
-    /*border: 1px solid white;*/
     display: inline-block;
     width: fit-content;
     margin-right: 1%;
@@ -30,28 +41,31 @@
         color: white;
     }
 
-.body-content{
-    position: absolute;
-    width:100%;
-}
-/* Main content */
-.main-content {
-    height: 90vh;
-    overflow: auto;
-    background-color: floralwhite;
-}
+
+    /* Main content */
+    .main-content {
+        /*width: 100%;*/
+        height: 100vh;
+        overflow: auto;
+        background-color: floralwhite;
+        margin-left: 0%;
+        margin-top : 8vh;
+        margin-bottom : 0.5%;
+        /*flex-direction: column;*/
+    }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-    .main-content::-webkit-scrollbar {
+    body::-webkit-scrollbar {
         display: none;
     }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.main-content {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+.body {
+    -ms-overflow-style: none;  IE and Edge 
+    scrollbar-width: none;  Firefox 
 }
 
+/**/
 
 /* ---------- General ---------------- */
 .list-style-none {
@@ -72,4 +86,7 @@
     font-weight: bolder;
 }
 
+.flex-direction-column{
+    flex-direction : column;
+}
 
