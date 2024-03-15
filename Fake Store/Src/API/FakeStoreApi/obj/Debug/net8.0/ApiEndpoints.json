@@ -32,8 +32,8 @@
   },
   {
     "ContainingType": "FakeStoreApi.Controllers.FakeStoreController",
-    "Method": "Products",
-    "RelativePath": "api/FakeStore/Products",
+    "Method": "AllProducts",
+    "RelativePath": "api/FakeStore/AllProducts",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -41,6 +41,32 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[Models.Entities.Product, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FakeStoreApi.Controllers.FakeStoreController",
+    "Method": "GetProductByID",
+    "RelativePath": "api/FakeStore/GetProductByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Models.Entities.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -65,5 +91,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FakeStoreApi.Controllers.FakeStoreController",
+    "Method": "SearchProducts",
+    "RelativePath": "api/FakeStore/SearchProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Models.Entities.Product, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
