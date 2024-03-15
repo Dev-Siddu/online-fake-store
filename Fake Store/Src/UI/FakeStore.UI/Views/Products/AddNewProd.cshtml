@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Add New Product";
 }
-<div>
+<div class="d-flex justify-content-center align-items-center w-75 h-75 p-4 border">
     @if (ViewBag.Response != null)
     {
         @if (@ViewBag.Response == 0)
@@ -14,9 +14,9 @@
             <h3 class="text-success text-center">Product added successfully</h3>
         }
     }
-    <form method="post" asp-action="AddNewProd" asp-controller="Products" enctype="multipart/form-data">
+    <form method="post" asp-action="AddNewProd" asp-controller="Products" enctype="multipart/form-data" class="border w-100 p-3">
     
-    <table class="table w-75">
+    <table class="table table-borderless w-100 p-4 rounded fs-3 border">
         <tbody>
             <tr>
                 <td>

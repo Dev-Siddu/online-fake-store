@@ -64,3 +64,4 @@ C:\Users\siddarood\Desktop\My Folder\Projects\E-Commerce_Fake Store\online-fake-
 C:\Users\siddarood\Desktop\My Folder\Projects\E-Commerce_Fake Store\online-fake-store\Fake Store\Src\UI\FakeStore.UI\obj\Debug\net8.0\FakeStoreUI.pdb
 C:\Users\siddarood\Desktop\My Folder\Projects\E-Commerce_Fake Store\online-fake-store\Fake Store\Src\UI\FakeStore.UI\obj\Debug\net8.0\FakeStoreUI.genruntimeconfig.cache
 C:\Users\siddarood\Desktop\My Folder\Projects\E-Commerce_Fake Store\online-fake-store\Fake Store\Src\UI\FakeStore.UI\obj\Debug\net8.0\ref\FakeStoreUI.dll
+C:\Users\siddarood\Desktop\My Folder\Projects\E-Commerce_Fake Store\online-fake-store\Fake Store\Src\UI\FakeStore.UI\bin\Debug\net8.0\FakeStoreUI.staticwebassets.runtime.json
