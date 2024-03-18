@@ -20,7 +20,8 @@ body {
     position : fixed;
     top: 0%;
     width: inherit;
-    height: 8vh;
+    height: fit-content;
+    border: 2px solid black;
 }
 
 /* Footer */
@@ -49,9 +50,10 @@ body {
         overflow: auto;
         background-color: floralwhite;
         margin-left: 0%;
-        margin-top : 8vh;
+        margin-top : 10vh;
         margin-bottom : 0.5%;
         /*flex-direction: column;*/
+        border : 5px solid maroon;
     }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
