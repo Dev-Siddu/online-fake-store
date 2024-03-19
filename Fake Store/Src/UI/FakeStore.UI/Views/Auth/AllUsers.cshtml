@@ -1,0 +1,50 @@
+﻿@model List<Models.Entities.User>;
+@{
+    ViewBag.Title = "AllUsers | Admin only view";
+    <style>
+        .user-card-shadow{
+            box-shadow : 0px 2vh 10px gray;
+        }
+    </style>
+}
+
+<section class="w-100">
+    <div class="container">
+        <div class="row">
+            @foreach (var user in Model)
+            {
+                <div class="col-md-3 col-sm-6 mt-2 p-1">
+                    <div class="card user-card-shadow" style="width: 15rem;">
+                        @* User Image *@
+                        @if (!string.IsNullOrEmpty(user.ImageName))
+                        {
+                            string firstImage = @user.ImageName.Split(",")[0];
+                            {
+                                <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=@firstImage" class="img-fluid h-25" alt="Image couldn't be found'">
+                            }
+                        }
+                        else
+                        {
+                            <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=no_image.png" class="img-fluid" alt="Image couldn't be found'">
+                            @* <span class="text-danger text-center">User image not provided</span> *@
+                        }
+                        <div class="card-body">
+                            <div class="mb-1 mt-1">
+                                <label class="fw-bold">Name </label>
+                                <h3 class="">@user.Name</h3>
+                            </div>
+                            <div class="mb-1 mt-1">
+                                <label class="fw-bold">Email </label>
+                                <div class="">@user.Email</div>
+                            </div>
+                            <div class="mb-1 mt-1">
+                                <label class="fw-bold">Phone </label>
+                                <div class="">@user.Phone</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

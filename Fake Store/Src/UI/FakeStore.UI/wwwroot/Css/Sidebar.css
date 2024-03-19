@@ -1,8 +1,9 @@
-﻿.sidebar {
+﻿
+.sidebar {
     position: absolute;
     top: 0%;
     left: -259px;
-    height: calc(100vh + 10vh);
+    height: calc(100vh);
     width: 260px;
 }
 
@@ -12,6 +13,7 @@
     z-index: 1000;
     transition: all 1s ease-in-out;
     margin-top : 8vh;
+    overflow : auto;
 }
 
 .cancel {
@@ -37,15 +39,15 @@
     position: absolute;
     padding: 0%;
     text-align: center;
-    width: 100%;
-    /* margin-left: 8%; */
+    width: 90%;
+    margin: 0%; 
 }
 
     .menu-items > li {
         font-size: 1.4rem;
         /* border: 2px solid lightblue; */
         margin-top: 10%;
-        margin-left : 5%;
+        margin-left : 10%;
         padding: 1% 0%;
         cursor: pointer;
         text-align: left;

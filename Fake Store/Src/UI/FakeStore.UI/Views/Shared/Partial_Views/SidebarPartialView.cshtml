@@ -1,7 +1,32 @@
-﻿<nav class="sidebar" id="sidebar">
+﻿
+@{
+    <style>
+        .logout{
+            color: yellow;
+            text-shadow : 0px 1px 10px red;
+        }
+        .logout:hover{
+            color: white;
+            text-shadow: 0px 0px 20px blue;
+        }
+    </style>
+}
+
+<nav class="sidebar" id="sidebar">
     <div class="cancel" id="cancel">
         <i class="bi bi-x-square-fill fs-3 text-white"></i>
     </div>
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        <div>
+            <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=@Context.User.FindFirst("ImageName").Value" class="img-fluid"/>
+            <a asp-action="#" asp-controller="#" class="my-nav-link fs-3">@Context.User.FindFirst("UserName").Value</a>
+        </div>
+        <div>
+            <a asp-action="Signout" asp-controller="Auth" class="my-nav-link fs-5 ms-1 logout">Logout</a>
+        </div>
+
+    }
     <hr style="color:white" />
     <div class="menu-content">
         <ul class="menu-items list-style-none text-white">
@@ -11,10 +36,21 @@
             <li>
                 <a class="nav-link active text-white" aria-current="page" href="~/Products/AddNewProd">Add new product</a>
             </li>
-            <li>
-                <a class="nav-link active text-white" aria-current="page" href="~/Products/RemoveProd">Remove product</a>
-            </li>
-            <li>Contact</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                @if (Context.User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="nav-link active text-white" aria-current="page" href="~/Products/RemoveProd">Remove product</a>
+                    </li>
+
+                    <li>Contact</li>
+                    <li>
+                        <a class="nav-link active text-white" aria-current="page" href="~/Auth/AllUsers">All users</a>
+                    </li>
+                }
+            }
         </ul>
     </div>
     <div class="">

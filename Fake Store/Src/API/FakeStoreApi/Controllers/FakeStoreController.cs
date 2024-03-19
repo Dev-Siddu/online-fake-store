@@ -68,7 +68,7 @@ namespace FakeStoreApi.Controllers
             string prodImagePath = addprod.Name.Trim().Replace(" ","") + Guid.NewGuid().ToString() + extension;
             string path = "wwwroot/Product_Images/" + prodImagePath ;
             var stream = System.IO.File.Create(path);
-            await addprod.ImageFile.CopyToAsync(stream);
+            await addprod.ImageFile.CopyToAsync(stream);    
             stream.Close();
 
 

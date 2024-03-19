@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models.DTO;
 using Models.Entities;
 using Newtonsoft.Json;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Mime;
-using System.Text;
 
 namespace FakeStore.UI.Controllers
 {
@@ -81,6 +77,7 @@ namespace FakeStore.UI.Controllers
 
         [HttpGet]
         [Route("[Action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RemoveProd()
         {
             HttpClient client = _httpClientFactory.CreateClient(); // HttpClient created.
@@ -99,6 +96,7 @@ namespace FakeStore.UI.Controllers
 
         [HttpGet]
         [Route("[Action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RemovingProductCompleteDetails(RemoveProductDTO prod)
         {
             List<Product> prods = await GetProductsAsync();
@@ -117,6 +115,7 @@ namespace FakeStore.UI.Controllers
 
         [HttpPost]
         [Route("[Action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> FinallyRemoveProduct(Product prod)
         {
             RemoveProductDTO rProd = new RemoveProductDTO()
