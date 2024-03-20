@@ -9,6 +9,7 @@ namespace Models.DTO
     {
         [Required(ErrorMessage = "Enter Name")]
         public string? Name { get; set; }
+        [Required(ErrorMessage = "Enter Name")]
         public string? Description { get; set; } = null;
 
         [Required(ErrorMessage = "Enter price")]

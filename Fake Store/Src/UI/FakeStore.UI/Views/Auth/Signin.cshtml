@@ -2,16 +2,12 @@
 
 @{
     ViewBag.Title = "User Login";
-    <style>
-        
-    </style>
 }
 
 <section class="mt-3 w-100 h-50 d-flex justify-content-center align-items-center">
-    <form method="post" asp-action="Sigin" asp-controller="Auth" asp-route-ReturnUrl="@ViewBag.ReturnUrl" enctype="multipart/form-data" class="d-flex justify-content-center w-50">
-            
-            <div class="row w-50">
-                <div class="fs-4">
+    <form method="post" id="signinForm" asp-action="Sigin" asp-controller="Auth" asp-route-ReturnUrl="@ViewBag.ReturnUrl" enctype="multipart/form-data" onsubmit="return validateForm(Event)" class="d-flex justify-content-center w-50">
+        <div class="row w-50">
+            <div class="fs-4">
                 @if (ViewBag.Message != null)
                 {
                     @switch (ViewBag.Message)
@@ -25,34 +21,53 @@
                             ; break;
                     }
                 }
-                </div>
-
-                <div class="col-12 mt-1">
-                    <div class="text-center">
-                        <label asp-for="@Model.EmailOrPhone" class="form-label text-center fs-3"></label>
-                        <span class="text-danger">*</span>
-                    </div>
-                     
-                    <input type="text" asp-for="@Model.EmailOrPhone" class="form-control" />
-                    <label asp-validation-for="@Model.EmailOrPhone"></label>
-
-                </div>
-                <div class="col-12 mt-1">
-                    <div class="text-center">
-                        <label asp-for="@Model.Password" class="form-label text-center fs-3"></label>
-                        <span class="text-danger">*</span>
-                    </div>
-                    <input type="password" asp-for="@Model.Password" class="form-control" />
-                    <label asp-validation-for="@Model.Password"></label>
-                </div>
-                <div class="col-12 mt-1 text-center">
-                    <input type="submit" class="btn btn-primary w-100" value="Login"/>
-                </div>
             </div>
-        </form>
+            <div class="col-12 mt-1">
+                <div class="text-center">
+                    <label asp-for="@Model.EmailOrPhone" class="form-label text-center fs-3"></label>
+                    <span class="text-danger">*</span>
+                </div>
+
+                <input type="text" asp-for="@Model.EmailOrPhone" class="form-control" tabindex="1" onkeydown="clearErrors(event)" autofocus />
+                <label asp-validation-for="@Model.EmailOrPhone"></label>
+            </div>
+            <div class="col-12 mt-1">
+                <div class="text-center">
+                    <label asp-for="@Model.Password" class="form-label text-center fs-3"></label>
+                    <span class="text-danger">*</span>
+                </div>
+                <input type="password" asp-for="@Model.Password" class="form-control" tabindex="2" />
+                <label asp-validation-for="@Model.Password"></label>
+            </div>
+            <div>
+                <input type="checkbox" class="form-check-input" asp-for="@Model.RememberMe" />
+                <label asp-for="@Model.RememberMe"></label>
+            </div>
+            <div class="col-12 mt-1 text-center">
+                <input type="submit" id="loginBtn" onclick="javascript:void(0)" class="btn btn-primary w-100" value="Login" />
+            </div>
+            <div id="validationErrors">
+            </div>
+        </div>
+    </form>
 </section>
 
 
-<script>
+<script type="text/javascript">
+    function validateForm(event) {
+        let userIdinput = document.querySelector('#EmailOrPhone');
+        let passwordInput = document.querySelector('#Password');
+        let showValidations = document.querySelector('#validationErrors');
+        let signInForm = document.querySelector('#signinForm');
 
+        if (userIdinput.value == '' || passwordInput.value == '') {
+            showValidations.innerHTML = `<b class="text-danger text-center">Input fields cannot be empty</b>`;
+            return false;
+        }
+        return true;
+    }
+    function clearErrors(event) {
+        let showValidations = document.querySelector('#validationErrors');
+        showValidations.innerHTML = '';
+    }
 </script>

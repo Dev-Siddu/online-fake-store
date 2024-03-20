@@ -2,7 +2,9 @@
 using Models.Entities;
 using Models.DTO;
 using System.Text.Json;
+using FuzzySharp;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace FakeStoreApi.Controllers
 {
@@ -45,13 +47,16 @@ namespace FakeStoreApi.Controllers
         [Route("SearchProducts")]
         public async Task<List<Product>?> SearchProducts(string search)
         {
+            List<Product>? matchedProducts = new List<Product>();
+
             if (Products == null)
             {
                 Products = await getDSeriProductsAsync();
             }
-            List<Product>? prods = Products?.Where(temp => temp.Name.Contains(search,StringComparison.OrdinalIgnoreCase)).ToList();
-            if (prods == null) return null;
-            return prods;
+            // TO : DO search Products
+            matchedProducts = Products.Where(temp => temp.Name.Contains($"{search}",StringComparison.OrdinalIgnoreCase)).ToList();
+            if (matchedProducts.Count <= 0) return null;
+            return matchedProducts;
         }
 
         [HttpPost]

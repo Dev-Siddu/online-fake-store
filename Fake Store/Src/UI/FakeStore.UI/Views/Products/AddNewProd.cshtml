@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Add New Product";
 }
-<div class="d-flex justify-content-center align-items-center w-75 h-75 p-4 border">
+<div class="d-flex justify-content-center align-items-center w-75 h-75 p-4">
     @if (ViewBag.Response != null)
     {
         @if (@ViewBag.Response == 0)
@@ -14,48 +14,87 @@
             <h3 class="text-success text-center">Product added successfully</h3>
         }
     }
-    <form method="post" asp-action="AddNewProd" asp-controller="Products" enctype="multipart/form-data" class="border w-100 p-3">
-    
-    <table class="table table-borderless w-100 p-4 rounded fs-3 border">
-        <tbody>
-            <tr>
-                <td>
-                    <label asp-for="@Model.Name" class="form-label"></label>
-                </td>
-                <td>
-                    <input type="text" asp-for="@Model.Name" maxlength="15" class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label asp-for="@Model.Description" class="form-label"></label>
-                </td>
-                <td>
-                    <input type="text" asp-for="@Model.Description" maxlength="50" class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label asp-for="@Model.Price" class="form-label"></label>
-                </td>
-                <td>
-                    <input type="number" asp-for="@Model.Price" class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label asp-for="@Model.ImageFile" class="form-label"></label>
-                </td>
-                <td>
-                    <input type="file" asp-for="@Model.ImageFile" class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" class="btn btn-primary w-100" value="Add product"/>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <form method="post" asp-action="AddNewProd" asp-controller="Products" onsubmit="return validateForm(event)" enctype="multipart/form-data" class="w-100 p-3">
+
+        <table class="table table-borderless w-100 p-4 rounded fs-3">
+            <tbody>
+                <tr>
+                    <td>
+                        <label asp-for="@Model.Name" class="form-label"></label> <span class="text-danger">*</span>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="@Model.Name" maxlength="15" onkeydown="removeError('nameError')" class="form-control" />
+                        <lable id="nameError" class="fs-5"></lable>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="@Model.Description" class="form-label"></label> <span class="text-danger">*</span>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="@Model.Description" maxlength="50" onkeydown="removeError('descError')" class="form-control" />
+                        <lable id="descError" class="fs-5"></lable>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="@Model.Price" class="form-label"></label> <span class="text-danger">*</span>
+                    </td>
+                    <td>
+                        <input type="number" asp-for="@Model.Price" onkeydown="removeError('priceError')" class="form-control" />
+                        <lable id="priceError" class="fs-5"></lable>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label asp-for="@Model.ImageFile" class="form-label"></label> <span class="text-danger">*</span>
+                    </td>
+                    <td>
+                        <input type="file" asp-for="@Model.ImageFile" onchange="removeError('imgFileError')" class="form-control" />
+                        <lable id="imgFileError" class="fs-5"></lable>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" class="btn btn-primary w-100" value="Add product" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </form>
 </div>
+
+<script>
+    function validateForm(event) {
+        let message = "Input required";
+        let name = document.querySelector('#Name');
+        let description = document.querySelector('#Description');
+        let price = document.querySelector('#Price');
+        let imgFile = document.querySelector('#ImageFile');
+
+        let hasErrors = 0;
+        if (name.value == '') {
+            document.querySelector('#nameError').innerHTML = `<b class="text-danger">${message}</b>`;
+            hasErrors = 1;
+        }
+        if (description.value == '') {
+            document.querySelector('#descError').innerHTML = `<b class="text-danger">${message}</b>`;
+            hasErrors = 1;
+        }
+        if (price.value == '' || price.value == 0) {
+            document.querySelector('#priceError').innerHTML = `<b class="text-danger">${message}</b>`;
+            hasErrors = 1;
+        }
+        if (imgFile.value == '' || imgFile.value.length == 0) {
+            document.querySelector('#imgFileError').innerHTML = `<b class="text-danger">${message}</b>`;
+            hasErrors = 1;
+        }
+
+        if (hasErrors == 1) return false;
+        return true;
+    }
+
+    function removeError(id){
+        document.getElementById(id).innerHTML = '';
+    }
+</script>

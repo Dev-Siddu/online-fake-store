@@ -61,13 +61,16 @@ namespace FakeStoreUI.Controllers
             }
             HttpClient client = _httpClientFactory.CreateClient();
             // For saving image ( if exists )
-            if (registrationRequest.Image.Length > 0)
+            if (registrationRequest.Image != null)
             {
-                var formData = new MultipartFormDataContent();
-                formData.Add(new StreamContent(registrationRequest.Image.OpenReadStream()), "ImageFile", registrationRequest.Image.FileName.Trim().Replace(" ", ""));
-                HttpResponseMessage imageSaveResponse = await client.PostAsync("http://localhost:5035/api/Auth/SaveUserProfileImage", formData);
+                if (registrationRequest.Image.Length > 0)
+                {
+                    var formData = new MultipartFormDataContent();
+                    formData.Add(new StreamContent(registrationRequest.Image.OpenReadStream()), "ImageFile", registrationRequest.Image.FileName.Trim().Replace(" ", ""));
+                    HttpResponseMessage imageSaveResponse = await client.PostAsync("http://localhost:5035/api/Auth/SaveUserProfileImage", formData);
 
-                fileName = await imageSaveResponse.Content.ReadAsStringAsync();
+                    fileName = await imageSaveResponse.Content.ReadAsStringAsync();
+                }
             }
 
             User user = ConvertToUser.ToUser(registrationRequest, fileName);
@@ -80,7 +83,7 @@ namespace FakeStoreUI.Controllers
             if (!response.IsSuccessStatusCode)
             {
                 ViewBag.Message = 0;
-
+                return View(registrationRequest);
             }
             ViewBag.Message = 1;
             return View(registrationRequest);
@@ -104,9 +107,9 @@ namespace FakeStoreUI.Controllers
 
         [HttpPost]
         [Route("[Action]")]
-        public async Task<IActionResult> Signin(LoginDTO loginCredentials, string ReturnUrl, bool rememberMe)
+        public async Task<IActionResult> Signin(LoginDTO loginCredentials, string? ReturnUrl)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ViewBag.Message = 0;
                 return View(loginCredentials);
@@ -158,15 +161,30 @@ namespace FakeStoreUI.Controllers
             var principle = new ClaimsPrincipal(identity);
 
             AuthenticationProperties props;
-            props = new AuthenticationProperties()
+            if (loginCredentials.RememberMe)
             {
-                //AllowRefresh = <bool>,
-                //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                IsPersistent = rememberMe
-                //IssuedUtc = <DateTimeOffset>,
-                //RedirectUri = <string>
+                props = new AuthenticationProperties()
+                {
+                    //AllowRefresh = <bool>,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30),
+                    IsPersistent = true
+                    //IssuedUtc = <DateTimeOffset>,
+                    //RedirectUri = <string>
 
-            };
+                };
+            }
+            else
+            {
+                props = new AuthenticationProperties()
+                {
+                    //AllowRefresh = <bool>,
+                    //ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30),
+                    IsPersistent = false
+                    //IssuedUtc = <DateTimeOffset>,
+                    //RedirectUri = <string>
+
+                };
+            }
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle, props);
             return Redirect(ReturnUrl == null ? "/Products/AllProducts" : ReturnUrl);
 
