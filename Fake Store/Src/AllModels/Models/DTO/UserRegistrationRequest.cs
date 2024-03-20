@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Models.DTO;
 using Models.Entities;
 using System.ComponentModel.DataAnnotations;
@@ -38,6 +37,7 @@ public static class ConvertToUser
 {
     public static User ToUser(this UserRegistrationRequest registrationRequest, string fileName)
     {
+        // getting the hased password
         User user = new User();
         user.Name = registrationRequest.Name;
         user.Email = registrationRequest.Email;

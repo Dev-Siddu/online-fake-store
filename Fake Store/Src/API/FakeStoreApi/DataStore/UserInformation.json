@@ -3,7 +3,7 @@
     "Id": 0,
     "Name": "DefaultAdmin",
     "Email": "defaultAdmin@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "1234567980",
     "ImageName": "default_admin_big.png,default_admin_small.png",
     "Role": "Admin"
@@ -12,7 +12,7 @@
     "Id": 1,
     "Name": "abc",
     "Email": "abc1@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "4567891238",
     "ImageName": "",
     "Role": "User"
@@ -21,7 +21,7 @@
     "Id": 2,
     "Name": "abc",
     "Email": "abc2@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "4567891238",
     "ImageName": "",
     "Role": "User"
@@ -30,7 +30,7 @@
     "Id": 3,
     "Name": "Rahul",
     "Email": "rahul@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "password",
     "ImageName": "",
     "Role": "User"
@@ -39,7 +39,7 @@
     "Id": 4,
     "Name": "Rahul",
     "Email": "rahul@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "1234567988",
     "ImageName": "male_profile_13fd96d65-79b4-435d-a000-811e503248d6.png",
     "Role": "User"
@@ -48,7 +48,7 @@
     "Id": 5,
     "Name": "Ganesh",
     "Email": "ganesh@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "9874561239",
     "ImageName": "male_profile_2e1270895-9d52-4d2d-807c-63c209535eeb.png",
     "Role": "User"
@@ -57,7 +57,7 @@
     "Id": 6,
     "Name": "Kumari",
     "Email": "kumari@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "1234567985",
     "ImageName": "female_profilea5359500-9677-4b18-b0ac-78b29712d3de.png",
     "Role": "User"
@@ -66,7 +66,7 @@
     "Id": 7,
     "Name": "Karan",
     "Email": "karn@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "9778565487",
     "ImageName": "male_profile_12ab6d234-7bc1-4063-b775-83571206c16b.png",
     "Role": "user"
@@ -75,7 +75,7 @@
     "Id": 8,
     "Name": "sdf",
     "Email": "sid@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "1234567987",
     "ImageName": "",
     "Role": "user"
@@ -84,9 +84,18 @@
     "Id": 9,
     "Name": "pavan",
     "Email": "pavan@mail.com",
-    "Password": "password",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "9876543215",
     "ImageName": "",
+    "Role": "user"
+  },
+  {
+    "Id": 10,
+    "Name": "Karan",
+    "Email": "Karan@mail.com",
+    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "Phone": "1234567890",
+    "ImageName": "male_profile_14c444aee-c206-4719-8a1d-164bc2f2fbf1.png",
     "Role": "user"
   }
 ]

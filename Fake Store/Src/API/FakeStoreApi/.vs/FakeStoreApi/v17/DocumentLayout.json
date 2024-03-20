@@ -3,21 +3,17 @@
   "WorkspaceRootPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\views\\products\\addnewprod.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\views\\auth\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3480B6F2-D8FC-4391-B391-227295CD38A9}|..\\..\\AllModels\\Models\\Models.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\allmodels\\models\\dto\\userregistrationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3480B6F2-D8FC-4391-B391-227295CD38A9}|..\\..\\AllModels\\Models\\Models.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\allmodels\\models\\dto\\addproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\helperclasses\\hashhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\api\\fakestoreapi\\controllers\\fakestorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|solutionrelative:controllers\\fakestorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\api\\fakestoreapi\\datastore\\productsinformation.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|solutionrelative:datastore\\productsinformation.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|c:\\users\\siddarood\\desktop\\my folder\\projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\api\\fakestoreapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,27 +28,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Signup.cshtml",
-              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Auth\\Signup.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Views\\Auth\\Signup.cshtml",
-              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Auth\\Signup.cshtml",
-              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Views\\Auth\\Signup.cshtml",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAABgAAABvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-20T06:06:40.733Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddProductDTO.cs",
-              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\DTO\\AddProductDTO.cs",
-              "RelativeDocumentMoniker": "..\\..\\AllModels\\Models\\DTO\\AddProductDTO.cs",
-              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\DTO\\AddProductDTO.cs",
-              "RelativeToolTip": "..\\..\\AllModels\\Models\\DTO\\AddProductDTO.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Title": "UserRegistrationRequest.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\DTO\\UserRegistrationRequest.cs",
+              "RelativeDocumentMoniker": "..\\..\\AllModels\\Models\\DTO\\UserRegistrationRequest.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\AllModels\\Models\\DTO\\UserRegistrationRequest.cs",
+              "RelativeToolTip": "..\\..\\AllModels\\Models\\DTO\\UserRegistrationRequest.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAgwCgAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T06:04:41.258Z",
+              "WhenOpened": "2024-03-20T11:53:01.744Z",
               "EditorCaption": ""
             },
             {
@@ -93,41 +76,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddNewProd.cshtml",
-              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Products\\AddNewProd.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Views\\Products\\AddNewProd.cshtml",
-              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Products\\AddNewProd.cshtml",
-              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Views\\Products\\AddNewProd.cshtml",
-              "ViewState": "AQIAADgAAAAAAAAAAAAAAEgAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-20T06:03:19.754Z",
+              "DocumentIndex": 2,
+              "Title": "HashHelper.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\HelperClasses\\HashHelper.cs",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\HelperClasses\\HashHelper.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\HelperClasses\\HashHelper.cs",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\HelperClasses\\HashHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-20T11:44:30.659Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductsInformation.json",
-              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\DataStore\\ProductsInformation.json",
-              "RelativeDocumentMoniker": "DataStore\\ProductsInformation.json",
-              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\DataStore\\ProductsInformation.json",
-              "RelativeToolTip": "DataStore\\ProductsInformation.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAADnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-03-20T05:25:52.464Z",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAewEIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-20T11:42:34.495Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FakeStoreController.cs",
-              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\Controllers\\FakeStoreController.cs",
-              "RelativeDocumentMoniker": "Controllers\\FakeStoreController.cs",
-              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\Controllers\\FakeStoreController.cs",
-              "RelativeToolTip": "Controllers\\FakeStoreController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAqwC8AAABHAAAA",
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T04:51:02.523Z",
+              "WhenOpened": "2024-03-20T11:42:22.276Z",
               "EditorCaption": ""
             }
           ]

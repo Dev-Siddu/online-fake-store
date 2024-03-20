@@ -73,6 +73,8 @@ namespace FakeStoreUI.Controllers
                 }
             }
 
+            // Hasing the password
+            registrationRequest.Password =  HelperClasses.HashHelper.HashPassword(registrationRequest.Password);
             User user = ConvertToUser.ToUser(registrationRequest, fileName);
 
             // For saving the use information
@@ -115,6 +117,7 @@ namespace FakeStoreUI.Controllers
                 return View(loginCredentials);
             }
             HttpClient client = _httpClientFactory.CreateClient();
+            loginCredentials.Password = HelperClasses.HashHelper.HashPassword(loginCredentials.Password);
             string creadentialsSerialized = JsonConvert.SerializeObject(loginCredentials);
 
             HttpContent content = new StringContent(creadentialsSerialized, System.Text.Encoding.UTF8, "application/json");
