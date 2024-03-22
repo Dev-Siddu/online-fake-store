@@ -31,7 +31,14 @@
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         <div>
+                            @if (@Context.User.FindFirst("ImageName").Value == "")
+                            {
+                                <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=no_image.png" class="img-fluid" width="50" />
+                            }
+                            else
+                            {
                             <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=@Context.User.FindFirst("ImageName").Value" class="img-fluid" width="50" />
+                            }
                             <a asp-action="#" asp-controller="#" class="my-nav-link me-2">@Context.User.FindFirst("UserName").Value</a>
                         </div>
                     }

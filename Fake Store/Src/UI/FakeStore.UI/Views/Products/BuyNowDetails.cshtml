@@ -1,0 +1,145 @@
+﻿@model Models.Entities.Product;
+@{
+    <style>
+        .box-shadow {
+            box-shadow: 0px 0px 25px black;
+        }
+
+        #imgclick > input {
+            cursor: pointer;
+        }
+    </style>
+}
+
+<div class="container p-3 mt-3">
+    <div class="row">
+        <div class="col">
+            <img src="@Model.ImagePath" class="img-fluid h-50" id="image" />
+        </div>
+        <div class="col">
+            <div class="container ">
+                <table class="table table-borderless table-responsive table-center">
+                    <thead class="fs-3">
+                        <tr>
+                            <th scope="col" colspan="2" class="text-danger">Product - Details</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fs-5 bold">
+                        <input type="hidden" asp-for="@Model.ID" class="form-control" readonly />
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>
+                                <input type="text" asp-for="@Model.Name" class="form-control" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>
+                                <textarea rows="2" class="form-control" readonly>@Model.Description</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>
+                                <input type="number" class="form-control" asp-for="@Model.Price" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Rating</th>
+                            <td>
+                                @if (Model.Rating != null)
+                                {
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <th scope="row">Ratings</th>
+                                            <td>
+                                                <input type="number" asp-for="@Model.Rating.Rate)" class="form-control" readonly />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Count</th>
+                                            <td>
+                                                <input type="number" asp-for="@Model.Rating.count)" class="form-control" readonly />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                                else
+                                {
+                                    <span>Not available</span>
+                                    <input type="hidden" asp-for="@Model.Rating" />
+                                }
+                            </td>
+                        </tr>
+                        @* Here add more details if needed ( above delete button )*@
+
+                        @* Delete button *@
+                        <tr class="">
+                            <td colspan="2" class="text-center">
+                                <button type="button" class="btn btn-primary w-50 fs-4" id="buyNowBtn" title="click to confirm the purchase">Buy now</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        let img = document.querySelector('#image');
+        img.style.cursor = "pointer";
+        img.addEventListener('click', function () {
+            let val = img.getAttribute('src');
+            window.open(val);
+        });
+
+        // final purchase
+        let purchaseBtn = document.querySelector("#buyNowBtn");
+        purchaseBtn.addEventListener('click', function () {
+            let baseUrl = "http://" + window.location.href.split('/')[2];
+            console.log(baseUrl);
+            let finalUrl = baseUrl + "/Products/BuyNow?id=" + @Model.ID;
+            console.log(finalUrl);
+            let httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", finalUrl, false);
+            httpRequest.send();
+
+            let jsonResponse = httpRequest.responseText;
+            console.log(httpRequest.status, " : ", jsonResponse);       // response on console
+            
+            if (httpRequest.status == 200) {
+                alert("Product purchased successfully");
+            } else {
+                alert(httpRequest.responseText);
+            }
+
+            // Events
+
+            httpRequest.onerror = function () {
+                alert("Error occured");
+            }
+
+            // httpRequest.onprogress = function (event) {
+            //     // event.loaded - how many bytes downloaded
+            //     // event.lengthComputable = true if the server sent Content-Length header
+            //     // event.total - total number of bytes (if lengthComputable)
+            //     alert(`Received ${event.loaded} of ${event.total}`);
+            // };
+
+            httpRequest.onload = function () {
+                console.log(httpRequest.status + " " + httpRequest.Response);
+                switch (httpRequest.status) {
+                    case 200: alert("Purchase Successful"); break;
+                    case 400: alert(httpRequest.response); break;
+                    case 500: alert("Internal error occured<br>" + httpRequest.response); break;
+                    default: alert(httpRequest.Response); break;
+                }
+            };
+        });
+    });
+
+</script>
+

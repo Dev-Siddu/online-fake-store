@@ -3,7 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\views\\auth\\allusers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\api\\fakestoreapi\\controllers\\fakestorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{331447B3-614B-49DC-9FD5-697A77386847}|FakeStoreApi.csproj|solutionrelative:controllers\\fakestorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\views\\products\\allproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\views\\shared\\partial_views\\sidebarpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\views\\products\\allmypurchases.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{432B3893-B5C8-40A8-B0B8-0186FB92123F}|..\\..\\UI\\FakeStore.UI\\FakeStoreUI.csproj|c:\\users\\siddarood\\desktop\\my folder\\main projects\\e-commerce_fake store\\online-fake-store\\fake store\\src\\ui\\fakestore.ui\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -53,15 +69,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AllUsers.cshtml",
-              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Auth\\AllUsers.cshtml",
-              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Views\\Auth\\AllUsers.cshtml",
-              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Auth\\AllUsers.cshtml",
-              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Views\\Auth\\AllUsers.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAbAAAA",
+              "DocumentIndex": 3,
+              "Title": "SidebarPartialView.cshtml",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Shared\\Partial_Views\\SidebarPartialView.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Views\\Shared\\Partial_Views\\SidebarPartialView.cshtml",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Shared\\Partial_Views\\SidebarPartialView.cshtml",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Views\\Shared\\Partial_Views\\SidebarPartialView.cshtml",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAB0AAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-22T05:22:57.29Z",
+              "WhenOpened": "2024-03-22T11:46:14.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AllProducts.cshtml",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Products\\AllProducts.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Views\\Products\\AllProducts.cshtml",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Products\\AllProducts.cshtml",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Views\\Products\\AllProducts.cshtml",
+              "ViewState": "AQIAABEAAAAAAAAAAAAqwB0AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-22T11:45:32.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AllMyPurchases.cshtml",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Products\\AllMyPurchases.cshtml",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Views\\Products\\AllMyPurchases.cshtml",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Views\\Products\\AllMyPurchases.cshtml",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Views\\Products\\AllMyPurchases.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABEAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-22T11:45:04.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAALsAAAAAAAAAAAAkwL8AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-22T10:58:51.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "..\\..\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "..\\..\\UI\\FakeStore.UI\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-22T11:03:44.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FakeStoreController.cs",
+              "DocumentMoniker": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\Controllers\\FakeStoreController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FakeStoreController.cs",
+              "ToolTip": "C:\\Users\\siddarood\\Desktop\\My Folder\\Main Projects\\E-Commerce_Fake Store\\online-fake-store\\Fake Store\\Src\\API\\FakeStoreApi\\Controllers\\FakeStoreController.cs",
+              "RelativeToolTip": "Controllers\\FakeStoreController.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAEwLwAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-22T10:45:58.634Z",
               "EditorCaption": ""
             }
           ]

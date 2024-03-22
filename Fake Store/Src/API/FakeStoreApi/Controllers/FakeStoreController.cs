@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Models.Entities;
 using Models.DTO;
+using Models.Entities;
+using FakeStoreApi.Helpers;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
-using FuzzySharp;
-using System.Collections.Specialized;
-using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace FakeStoreApi.Controllers
 {
@@ -20,6 +20,7 @@ namespace FakeStoreApi.Controllers
             _logger = logger;
         }
 
+        #region AllProducts
         [HttpGet]
         [Route("AllProducts")]
         public async Task<List<Product?>> AllProducts()
@@ -30,7 +31,9 @@ namespace FakeStoreApi.Controllers
             }
             return Products;
         }
+        #endregion
 
+        #region GetProductById
         [HttpGet]
         [Route("GetProductByID")]
         public async Task<Product?> GetProductByID(int id)
@@ -43,6 +46,9 @@ namespace FakeStoreApi.Controllers
             if (prod == null) return null;
             return prod;
         }
+        #endregion
+
+        #region SearchProducts
         [HttpGet]
         [Route("SearchProducts")]
         public async Task<List<Product>?> SearchProducts(string search)
@@ -54,26 +60,28 @@ namespace FakeStoreApi.Controllers
                 Products = await getDSeriProductsAsync();
             }
             // TO : DO search Products
-            matchedProducts = Products.Where(temp => temp.Name.Contains($"{search}",StringComparison.OrdinalIgnoreCase)).ToList();
+            matchedProducts = Products.Where(temp => temp.Name.Contains($"{search}", StringComparison.OrdinalIgnoreCase)).ToList();
             if (matchedProducts.Count <= 0) return null;
             return matchedProducts;
         }
+        #endregion
 
+        #region AddProduct
         [HttpPost]
         [Route("AddProduct")]
         public async Task<IActionResult> AddProduct(AddProductDTO addprod)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);  
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             Console.WriteLine(addprod.Name);
             Console.WriteLine(addprod.Price);
             Console.WriteLine(addprod.Description);
             //if (!ModelState.IsValid) return BadRequest();
             // Save the image
             string extension = Path.GetExtension(addprod.ImageFile.FileName);
-            string prodImagePath = addprod.Name.Trim().Replace(" ","") + Guid.NewGuid().ToString() + extension;
-            string path = "wwwroot/Product_Images/" + prodImagePath ;
+            string prodImagePath = addprod.Name.Trim().Replace(" ", "") + Guid.NewGuid().ToString() + extension;
+            string path = "wwwroot/Product_Images/" + prodImagePath;
             var stream = System.IO.File.Create(path);
-            await addprod.ImageFile.CopyToAsync(stream);    
+            await addprod.ImageFile.CopyToAsync(stream);
             stream.Close();
 
 
@@ -101,7 +109,9 @@ namespace FakeStoreApi.Controllers
             if (result) return Ok();
             return StatusCode(500);
         }
+        #endregion
 
+        #region RemoveProduct
         [HttpDelete]
         [Route("[Action]")]
         public async Task<IActionResult> RemoveProduct(RemoveProductDTO prod)
@@ -119,18 +129,87 @@ namespace FakeStoreApi.Controllers
                 };
                 return false;
             });
-            if(!(count > 0))
+            if (!(count > 0))
             {
                 return NotFound();
             }
             //Remove the image
-            string path = prod.ImagePath.Replace("http://localhost:5035","wwwroot");
+            string path = prod.ImagePath.Replace("http://localhost:5035", "wwwroot");
             System.IO.File.Delete(path);
             bool isSaved = await SerilizaAndSaveProdsAsync(Products);
             if (isSaved) return Ok();
             else return StatusCode(500);
         }
+        #endregion
 
+        #region Purchase_Product
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<Tuple<bool, string>> PurchaseProduct(int userID, int prodID)
+        {
+            User? user = await UsersHelper.GetUserById(userID);
+            if (user == null)
+            {
+                return new Tuple<bool, string>(false, "Invalid user");
+            }
+
+            if (!await isProductExistsWithThisID(prodID))
+            {
+                return new Tuple<bool, string>(false, "Invalid product");
+            }
+
+            string path = "DataStore/purchased.json";
+            string allPurchaseDetails = await System.IO.File.ReadAllTextAsync(path);
+            List<Purchase>? purchaseDetails = JsonSerializer.Deserialize<List<Purchase>>(allPurchaseDetails);
+
+            Purchase? userPurchase = purchaseDetails?.FirstOrDefault(temp => temp.UserID == userID);
+            if (userPurchase == null)
+            {
+                Purchase FirstPurchase = new Purchase();
+                FirstPurchase.UserID = userID;  
+                FirstPurchase.ProdIDs = new List<int> { prodID };
+
+                purchaseDetails.Add(FirstPurchase);
+
+            }
+            else
+            {
+                userPurchase.ProdIDs.Add(prodID);
+            }
+            string serilizedPurchaseDetails = JsonSerializer.Serialize(purchaseDetails);
+            await System.IO.File.WriteAllTextAsync(path, serilizedPurchaseDetails);
+            return new Tuple<bool, string>(true,"Product purchase successfully");
+        }
+        #endregion
+
+        #region AllMyPurchase
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<List<Product>?> AllMyPurchase(int userID)
+        {
+            User? user = await UsersHelper.GetUserById(userID);
+            if (user == null) return null;
+
+            string path = "DataStore/purchased.json";
+            string purchaseRegistry = await System.IO.File.ReadAllTextAsync(path);
+            List<Purchase> purchaseList = JsonSerializer.Deserialize<List<Purchase>>(purchaseRegistry);
+            Purchase? userPurchase = purchaseList.FirstOrDefault(temp => temp.UserID == userID);
+            if (userPurchase == null) { return null; }
+
+            List<int>? prodIds = userPurchase.ProdIDs;
+            List<Product> purchasedProducts = new List<Product>();
+            foreach (int id in prodIds)
+            {
+                Product? prd = await GetProductByID(id);
+                if(prd != null) purchasedProducts.Add(prd);
+            }
+            return purchasedProducts;
+        }
+        #endregion
+
+        // ---------------------------------------------------------------------
+        #region Non Action Methods
+        #region getDSeriProductsAsync
         [NonAction]
         public async Task<List<Product>?> getDSeriProductsAsync()
         {
@@ -139,20 +218,42 @@ namespace FakeStoreApi.Controllers
             List<Product>? prods = JsonSerializer.Deserialize<List<Product>>(json);
             return prods;
         }
+        #endregion
+
+        #region SerilizaAndSaveProdsAsync
         [NonAction]
         public async Task<bool> SerilizaAndSaveProdsAsync(List<Product> prods)
         {
             string productsPath = "DataStore/ProductsInformation.json";
             string serilizedProds = JsonSerializer.Serialize(prods);
-            await System.IO.File.WriteAllTextAsync(productsPath,serilizedProds);
+            await System.IO.File.WriteAllTextAsync(productsPath, serilizedProds);
             return true;
         }
+        #endregion
 
+
+        #region loadProducts
         [NonAction]
         public async Task<List<Product>?> loadProducts()
         {
             List<Product>? prods = await getDSeriProductsAsync();
-            return Products;
+            return prods;
         }
+        #endregion
+
+        [NonAction]
+        public async Task<bool> isProductExistsWithThisID(int prodID)
+        {
+            List<Product>? prods = await loadProducts();
+            if (prods == null) return false;
+            List<Product>? matchedProds = prods.Where(temp => temp.ID == prodID).ToList();
+            if (matchedProds.Count > 1 || matchedProds.Count == 0 || matchedProds == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
     }
 }
