@@ -117,6 +117,15 @@ namespace FakeStoreApi.Controllers
             return imageStream;
         }
 
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<bool> isMailIDExists(string mailID)
+        {
+            List<User>? users = await getAllDeserilizedusers();
+            if (users == null) return false;
+            bool isExists = users.Where(temp => temp.Email.Equals(mailID)).Any();
+            return isExists;
+        }
 
         [NonAction]
         public async Task<List<User>?> getAllDeserilizedusers()

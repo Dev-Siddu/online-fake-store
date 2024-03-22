@@ -68,8 +68,6 @@
         let cfmPassError = document.querySelector('#cfmPassError');
 
         cfmPass.addEventListener('keyup', function () {
-            console.log(cfmPass.value);
-            console.log(pass.value);
             if (cfmPass.value != pass.value) {
                 cfmPassError.innerHTML = `<b class="text-danger text-end">Password and Confirm password do not match </b>`;
             } else {
@@ -96,7 +94,15 @@
         if (email.value == '') {
             document.querySelector('#emailError').innerHTML = `<b class='text-danger'>${errorMessage}</b>`;
             formHasErrors = 0;
-        };
+        }
+        else {
+            let isExists = isMailExists(email.value);
+            if (isExists) {
+                document.querySelector('#emailError').innerHTML = `<b class="text-danger">Mail id already exists. use other mail id</b>`;
+                formHasErrors = 0;
+            }
+        }
+
         if (pass.value == '') {
             document.querySelector('#passError').innerHTML = `<b class='text-danger'>${errorMessage}</b>`;
             formHasErrors = 0;
@@ -106,11 +112,11 @@
             formHasErrors = 0;
         };
 
-        if(validatePassAndCfmPass(pass, cfmPass, cfmPassError) == 0){
+        if (validatePassAndCfmPass(pass, cfmPass, cfmPassError) == 0) {
             formHasErrors = 0;
         }
-        
-        if(formHasErrors == 0) return false;
+
+        if (formHasErrors == 0) return false;
         return true;
     }
 
@@ -120,6 +126,30 @@
             return 0;
         }
         return 1;
+    }
+
+    // check the mail already exist asynchronosly
+    document.querySelector('#Email').addEventListener('focusout', function () {
+        let mailError = document.querySelector('#emailError');
+        let enteredMailId = this.value;
+        if (enteredMailId == '') {
+            mailError.innerHTML = `<b class="text-danger">Enter value</b>`;
+            return;
+        }
+        let response = isMailExists(enteredMailId);
+        if (response == true) {
+            mailError.innerHTML = `<b class="text-danger">Mail id already exists. use other mail id</b>`;
+        }
+    });
+
+    function isMailExists(mailId) {
+        let httpRequest = new XMLHttpRequest();
+        var url = `http://localhost:5035/api/Auth/isMailIDExists?mailID=${mailId}`;
+        httpRequest.open("GET", url, false);
+        httpRequest.send();
+        var response = httpRequest.responseText;
+        if (response == 'true') return true;
+        else return false;
     }
 
 </script>
