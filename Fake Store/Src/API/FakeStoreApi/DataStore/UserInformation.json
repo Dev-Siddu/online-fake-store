@@ -36,15 +36,6 @@
     "Role": "User"
   },
   {
-    "Id": 4,
-    "Name": "Rahul",
-    "Email": "rahul@mail.com",
-    "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
-    "Phone": "1234567988",
-    "ImageName": "male_profile_13fd96d65-79b4-435d-a000-811e503248d6.png",
-    "Role": "User"
-  },
-  {
     "Id": 5,
     "Name": "Ganesh",
     "Email": "ganesh@mail.com",
@@ -65,7 +56,7 @@
   {
     "Id": 7,
     "Name": "Karan",
-    "Email": "karn@mail.com",
+    "Email": "karan@mail.com",
     "Password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
     "Phone": "9778565487",
     "ImageName": "male_profile_12ab6d234-7bc1-4063-b775-83571206c16b.png",

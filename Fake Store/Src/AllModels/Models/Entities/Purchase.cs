@@ -6,4 +6,4 @@ namespace Models.Entities
         public int UserID { get; set; }
         public List<int>? ProdIDs { get; set; } = new List<int>();   
     }
-}
+}   

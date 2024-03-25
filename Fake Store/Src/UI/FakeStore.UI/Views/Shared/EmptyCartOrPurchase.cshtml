@@ -1,0 +1,21 @@
+﻿
+@{
+    <style>
+        .prods{
+            text-decoration : none;
+        }
+        .prods:hover{
+            text-shadow : 1px 1px 2px black;
+            text-decoration : underline;
+        }
+    </style>
+}
+
+<div class="container h-100 d-flex align-items-center justify-content-center">
+    <div class="row-12">
+        <div class="col">
+            <b class="fs-2 text-danger">@ViewBag.Message &nbsp; &nbsp</b>
+            <a asp-controller="Products" asp-action="AllProducts" class="fs-4 text-primary prods">See Products</a>
+        </div>
+    </div>
+</div>

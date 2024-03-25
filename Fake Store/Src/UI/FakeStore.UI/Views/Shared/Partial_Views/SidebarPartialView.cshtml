@@ -19,7 +19,14 @@
     @if (Context.User.Identity.IsAuthenticated)
     {
         <div>
-            <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=@Context.User.FindFirst("ImageName").Value" class="img-fluid"/>
+            @if (@Context.User.FindFirst("ImageName").Value == "")
+            {
+                <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=no_image.png" class="img-fluid" width="50" />
+            }
+            else
+            {
+                <img src="http://localhost:5035/api/Auth/getUserProfileImage?imageName=@Context.User.FindFirst("ImageName").Value" class="img-fluid" width="50" />
+            }
             <a asp-action="#" asp-controller="#" class="my-nav-link fs-3">@Context.User.FindFirst("UserName").Value</a>
         </div>
         <div>
@@ -37,7 +44,7 @@
                 <a class="nav-link active text-white" asp-action="AllMyPurchases" asp-controller="Products" aria-current="page">All my purchase</a>
             </li>
             <li>
-                <a class="nav-link active text-white" aria-current="page" href="#">My Cart</a>
+                <a class="nav-link active text-white" aria-current="page" asp-action="MyCart" asp-controller="Products">My Cart</a>
             </li>
             @if (User.Identity.IsAuthenticated)
             {
@@ -45,7 +52,10 @@
                 @if (Context.User.IsInRole("Admin"))
                 {
                     <li>
-                        <a class="nav-link active text-white" aria-current="page" href="~/Products/RemoveProd">Remove product</a>
+                        <a class="nav-link active text-white" aria-current="page" asp-action="AddNewProd" asp-controller="Products">Add product</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active text-white" aria-current="page" asp-action="RemoveProd" asp-controller="Products">Remove product</a>
                     </li>
 
                     <li>Contact</li>

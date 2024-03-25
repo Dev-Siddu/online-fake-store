@@ -17,6 +17,8 @@ namespace FakeStore.UI.Controllers
             _logger = logger;
             _httpClientFactory = httpClientFactory;
         }
+
+
         [HttpGet]
         [Route("/")]
         public IActionResult Index()
@@ -44,7 +46,7 @@ namespace FakeStore.UI.Controllers
         // For Adding new product
         [HttpGet]
         [Route("[Action]")]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller, Admin")]
         public IActionResult AddNewProd()
         {
             return View(new AddProductDTO());
@@ -52,7 +54,7 @@ namespace FakeStore.UI.Controllers
 
         [HttpPost]
         [Route("[Action]")]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller, Admin")]
         public async Task<IActionResult> AddNewProd(AddProductDTO addProd)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -147,6 +149,8 @@ namespace FakeStore.UI.Controllers
             return Content("<h3>Couldn't remove the product. Some internal server error occured. Contact admin</h3>", "text/html");
         }
 
+        #region Purchase Product
+
         [HttpGet]
         [Route("[Action]")]
         public async Task<IActionResult> BuyNowDetails(int ProdID)
@@ -207,10 +211,99 @@ namespace FakeStore.UI.Controllers
 
             HttpResponseMessage responseMessage = await client.SendAsync(requestMessage);
             string response = await responseMessage.Content.ReadAsStringAsync();
+            if (string.IsNullOrEmpty(response))
+            {
+                ViewBag.Message = "You haven't purchased anything yet.";
+                return View("EmptyCartOrPurchase");
+            }
             List<Product>? purchasedProducts = JsonConvert.DeserializeObject<List<Product>>(response);
             purchasedProducts.Reverse();
             return View(purchasedProducts);
         }
+        #endregion
+
+        // Cart 
+        #region Cart
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<IActionResult> AddToCart(int prodID)
+        {
+            string id = HttpContext.User.FindFirst("UserID").Value;
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            int userID = Convert.ToInt32(id);
+            HttpClient client = _httpClientFactory.CreateClient();
+            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5035/api/FakeStore/AddToCart?userID={userID}&prodID={prodID}")
+            };
+            HttpResponseMessage responseMessage = await client.SendAsync(requestMessage);
+            string apiResponse = await responseMessage.Content.ReadAsStringAsync();
+            Tuple<bool,string> response = JsonConvert.DeserializeObject<Tuple<bool, string>>(apiResponse);
+            
+            if(response.Item1 == false)
+            {
+                return Content(response.Item2);
+            }
+            return LocalRedirect("~/Products/MyCart");
+        }
+
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<IActionResult> RemoveFromCart(int prodID)
+        {
+            string id = HttpContext.User.FindFirst("UserID").Value;
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            int userID = Convert.ToInt32(id);
+            HttpClient client = _httpClientFactory.CreateClient();
+            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5035/api/FakeStore/RemoveFromCart?userID={userID}&prodID={prodID}")
+            };
+            HttpResponseMessage apiResponse = await client.SendAsync(requestMessage);
+            string dResponse = await apiResponse.Content.ReadAsStringAsync();
+            Tuple<bool,string> response = JsonConvert.DeserializeObject<Tuple<bool,string>>(dResponse);
+            if (response.Item1 == false)
+            {
+                return Content(response.Item2);
+            }
+            return LocalRedirect("~/Products/MyCart");
+        }
+
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<IActionResult> MyCart()
+        {
+            string id = HttpContext.User.FindFirst("UserID").Value;
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+            int userID = Convert.ToInt32(id);
+            HttpClient client =  _httpClientFactory.CreateClient();
+            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://localhost:5035/api/FakeStore/MyCart?userID={userID}")
+            };
+            HttpResponseMessage apiResponse = await client.SendAsync(requestMessage);
+            string response = await apiResponse.Content.ReadAsStringAsync();
+            List<Product> userCartProducts = JsonConvert.DeserializeObject<List<Product>>(response);
+            if (string.IsNullOrEmpty(response))
+            {
+                ViewBag.Message = "You cart is empty.";
+                return View("EmptyCartOrPurchase");
+            }
+            return View(userCartProducts);
+        }
+        #endregion
 
 
         // ----------------------------- Non Action ---------------------------------------

@@ -60,5 +60,21 @@
     "ImagePath": "http://localhost:5035/Product_Images/Thermusflask90433d1e-77e8-4d64-a88a-46abea7fbd62.jpg",
     "Price": 850,
     "Rating": null
+  },
+  {
+    "ID": 12,
+    "Name": "Kutlary set",
+    "Description": "Kytlary set for your kitchen",
+    "ImagePath": "http://localhost:5035/Product_Images/Kutlaryseta84fad29-d114-4cb1-ac7c-21363272b36c.jpg",
+    "Price": 499,
+    "Rating": null
+  },
+  {
+    "ID": 14,
+    "Name": "Kitchen Island",
+    "Description": "Island in your kitchen for having great meals",
+    "ImagePath": "http://localhost:5035/Product_Images/KitchenIsland2f910dfd-d80f-4c37-93c2-a7423759a985.jpg",
+    "Price": 15000,
+    "Rating": null
   }
 ]
