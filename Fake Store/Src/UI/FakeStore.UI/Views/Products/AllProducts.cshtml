@@ -12,7 +12,7 @@
     {
         <div class="container w-75 m-3 p-3 prd-shadow">
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <div class="d-flex justify-content-around w-100 w-md-100 ">
                         <img class="img-fluid mr-3" src="@product.ImagePath" width="250" alt="Image not found / loaded" />
                         <div class="row w-50 fs-3">
@@ -25,13 +25,26 @@
                                     <span>[ @product.Rating.count ]</span>
                                 </div>
                             }
-                            
+
                         </div>
                         <div class="fs-3 ">
                             <div class="col-12 text-primary">&#8377;@product.Price</div>
                         </div>
                     </div>
                 </div>
+                <div class="col-6 ">
+                    </div>
+                    @if(User.Identity.IsAuthenticated){
+                    <div class="col-6 d-flex justify-content-end">
+                        <a asp-action="BuyNowDetails" asp-controller="Products" asp-route-ProdID="@product.ID" class="btn btn-primary me-3">Buy Now</a>
+                        <a asp-action="AddToCartDetails" asp-controller="Products" asp-route-ProdID="@product.ID" class="btn btn-danger me-3">Add to cart</a>
+                    </div>
+                }else{
+                <div class="col-6 d-flex justify-content-end">
+                    <a onclick="alert('You need to login inorder to purchase')" class="btn btn-primary me-3" title="you need to sign in">Buy Now</a>
+                        <a onclick="alert('You need to login inorder to add product to cart')" class="btn btn-danger me-3" title="you need to sign in">Add to cart</a>
+                </div>
+                }
             </div>
         </div>
     }
