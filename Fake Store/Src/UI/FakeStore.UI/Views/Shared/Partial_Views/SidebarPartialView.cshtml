@@ -44,7 +44,7 @@
                 <a class="nav-link active text-white" asp-action="AllMyPurchases" asp-controller="Products" aria-current="page">All my purchase</a>
             </li>
             <li>
-                <a class="nav-link active text-white" aria-current="page" href="#">My Cart</a>
+                <a class="nav-link active text-white" aria-current="page" asp-action="MyCart" asp-controller="Products">My Cart</a>
             </li>
             @if (User.Identity.IsAuthenticated)
             {

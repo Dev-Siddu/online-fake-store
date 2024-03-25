@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FakeStoreApi.Helpers;
+using Microsoft.AspNetCore.Mvc;
 using Models.DTO;
 using Models.Entities;
-using FakeStoreApi.Helpers;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace FakeStoreApi.Controllers
 {
@@ -166,7 +164,7 @@ namespace FakeStoreApi.Controllers
             if (userPurchase == null)
             {
                 Purchase FirstPurchase = new Purchase();
-                FirstPurchase.UserID = userID;  
+                FirstPurchase.UserID = userID;
                 FirstPurchase.ProdIDs = new List<int> { prodID };
 
                 purchaseDetails.Add(FirstPurchase);
@@ -178,7 +176,7 @@ namespace FakeStoreApi.Controllers
             }
             string serilizedPurchaseDetails = JsonSerializer.Serialize(purchaseDetails);
             await System.IO.File.WriteAllTextAsync(path, serilizedPurchaseDetails);
-            return new Tuple<bool, string>(true,"Product purchase successfully");
+            return new Tuple<bool, string>(true, "Product purchase successfully");
         }
         #endregion
 
@@ -201,14 +199,122 @@ namespace FakeStoreApi.Controllers
             foreach (int id in prodIds)
             {
                 Product? prd = await GetProductByID(id);
-                if(prd != null) purchasedProducts.Add(prd);
+                if (prd != null) purchasedProducts.Add(prd);
             }
             return purchasedProducts;
         }
         #endregion
 
+        #region Cart
+
+        #region Add to Cart
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<Tuple<bool, string>?> AddToCart(int userID, int prodID)
+        {
+            if (!ModelState.IsValid) return new Tuple<bool, string>(false, "Invalid details");
+            User? user = await UsersHelper.GetUserById(userID);
+            if (user == null)
+            {
+                return new Tuple<bool, string>(false, "Invalid user");
+            }
+
+            if (!await isProductExistsWithThisID(prodID))
+            {
+                return new Tuple<bool, string>(false, "Invalid product");
+            }
+
+            string path = "DataStore/CartInformation.json";
+            string serilzedCartInformation = await System.IO.File.ReadAllTextAsync(path);
+            List<Cart?> deSerilzedcartInformation = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(serilzedCartInformation);
+
+            Cart? userCart = deSerilzedcartInformation?.FirstOrDefault(temp => temp.UserID == userID);
+            if (userCart == null)
+            {
+                Cart cart = new Cart()
+                {
+                    UserID = userID,
+                    ProdIDs = new List<int>()
+                    {
+                        prodID
+                    }
+                };
+                deSerilzedcartInformation?.Add(cart);
+            }
+            else
+            {
+                userCart.ProdIDs.Insert(0,prodID);
+            }
+            string serilizeCartInformation = System.Text.Json.JsonSerializer.Serialize(deSerilzedcartInformation);
+            await System.IO.File.WriteAllTextAsync(path, serilizeCartInformation);
+            return new Tuple<bool, string>(true, "Product added to yout cart.");
+        }
+        #endregion
+
+        #region Remove from Cart
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<Tuple<bool, string>> RemoveFromCart(int userID, int prodID)
+        {
+            if (!ModelState.IsValid) return new Tuple<bool, string>(false, "Invalid details");
+            User? user = await UsersHelper.GetUserById(userID);
+            if (user == null)
+            {
+                return new Tuple<bool, string>(false, "Invalid user");
+            }
+
+            if (!await isProductExistsWithThisID(prodID))
+            {
+                return new Tuple<bool, string>(false, "Invalid product");
+            }
+
+            string path = "DataStore/CartInformation.json";
+            string serilzedCartInformation = await System.IO.File.ReadAllTextAsync(path);
+            List<Cart>? deSerilzedcartInformation = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(serilzedCartInformation);
+            Cart? userCart = deSerilzedcartInformation?.FirstOrDefault(temp => temp.UserID == userID);
+            int prodIndex = userCart.ProdIDs.IndexOf(prodID); // getting the prodId index
+            if (prodIndex == -1) return new Tuple<bool, string>(false, "invalid product id");
+            userCart.ProdIDs.RemoveAt(prodIndex); // removing the prodId usign it's index
+            string serilizeCartInformation = System.Text.Json.JsonSerializer.Serialize(deSerilzedcartInformation);
+            await System.IO.File.WriteAllTextAsync(path, serilizeCartInformation);
+            return new Tuple<bool, string>(true, "Product Removed from yout cart.");
+
+        }
+        #endregion
+
+        #region  MyCart
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<List<Product>?> MyCart(int userID){
+            User? user = await UsersHelper.GetUserById(userID);
+            if (user == null)
+            {
+                return null;
+            }
+            //List of products that user added to this cart
+            List<Product> userCartProducts = new List<Product>();
+
+            string path = "DataStore/CartInformation.json";
+            string serilzedCartInformation = await System.IO.File.ReadAllTextAsync(path);
+            List<Cart?> deSerilzedcartInformation = System.Text.Json.JsonSerializer.Deserialize<List<Cart>>(serilzedCartInformation);
+            Cart userCart = deSerilzedcartInformation.FirstOrDefault(temp => temp.UserID == userID);
+
+            if (userCart == null) return null;
+
+            foreach (int prodID in userCart.ProdIDs)
+            {
+                Product? prod = await GetProductByID(prodID);
+                if (prod != null) userCartProducts.Add(prod);
+            }
+            return userCartProducts;
+        }
+        
+        #endregion
+
+        #endregion
         // ---------------------------------------------------------------------
         #region Non Action Methods
+
         #region getDSeriProductsAsync
         [NonAction]
         public async Task<List<Product>?> getDSeriProductsAsync()
@@ -231,7 +337,6 @@ namespace FakeStoreApi.Controllers
         }
         #endregion
 
-
         #region loadProducts
         [NonAction]
         public async Task<List<Product>?> loadProducts()
@@ -241,6 +346,7 @@ namespace FakeStoreApi.Controllers
         }
         #endregion
 
+        #region IsProductExistsWithThisID
         [NonAction]
         public async Task<bool> isProductExistsWithThisID(int prodID)
         {
@@ -253,6 +359,7 @@ namespace FakeStoreApi.Controllers
             }
             return true;
         }
+        #endregion
 
         #endregion
     }

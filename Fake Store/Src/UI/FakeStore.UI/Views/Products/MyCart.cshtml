@@ -33,17 +33,20 @@
                     </div>
                 </div>
                 <div class="col-6 ">
-                    </div>
-                    @if(User.Identity.IsAuthenticated){
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
                     <div class="col-6 d-flex justify-content-end">
                         <a asp-action="BuyNowDetails" asp-controller="Products" asp-route-ProdID="@product.ID" class="btn btn-primary me-3">Buy Now</a>
-                        <a asp-action="AddToCart" asp-controller="Products" asp-route-prodID="@product.ID" class="btn btn-danger me-3">Add to cart</a>
+                        <a asp-action="RemoveFromCart" asp-controller="Products" asp-route-ProdID="@product.ID" class="btn btn-danger me-3">Remove from cart</a>
                     </div>
-                }else{
-                <div class="col-6 d-flex justify-content-end">
-                    <a onclick="alert('You need to login inorder to purchase')" class="btn btn-primary me-3" title="you need to sign in">Buy Now</a>
+                }
+                else
+                {
+                    <div class="col-6 d-flex justify-content-end">
+                        <a onclick="alert('You need to login inorder to purchase')" class="btn btn-primary me-3" title="you need to sign in">Buy Now</a>
                         <a onclick="alert('You need to login inorder to add product to cart')" class="btn btn-danger me-3" title="you need to sign in">Add to cart</a>
-                </div>
+                    </div>
                 }
             </div>
         </div>
