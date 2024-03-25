@@ -2,19 +2,21 @@
 @{
     ViewBag.Title = "Add New Product";
 }
-<div class="d-flex justify-content-center align-items-center w-75 h-75 p-4">
-    @if (ViewBag.Response != null)
-    {
-        @if (@ViewBag.Response == 0)
+<div class="d-flex justify-content-center align-items-center w-100 h-75">
+
+    <form method="post" asp-action="AddNewProd" asp-controller="Products" onsubmit="return validateForm(event)" enctype="multipart/form-data" class="w-75 p-5">
+
+        @if (ViewBag.Response != null)
         {
-            <h3 class="text-danger text-center">Some Internall error occured</h3>
+            @if (@ViewBag.Response == 0)
+            {
+                <h3 class="text-danger text-center">Some Internall error occured</h3>
+            }
+            else if (ViewBag.Response == 1)
+            {
+                <h3 class="text-success text-center">Product added successfully</h3>
+            }
         }
-        else if (ViewBag.Response == 1)
-        {
-            <h3 class="text-success text-center">Product added successfully</h3>
-        }
-    }
-    <form method="post" asp-action="AddNewProd" asp-controller="Products" onsubmit="return validateForm(event)" enctype="multipart/form-data" class="w-100 p-3">
 
         <table class="table table-borderless w-100 p-4 rounded fs-3">
             <tbody>
@@ -94,7 +96,7 @@
         return true;
     }
 
-    function removeError(id){
+    function removeError(id) {
         document.getElementById(id).innerHTML = '';
     }
 </script>

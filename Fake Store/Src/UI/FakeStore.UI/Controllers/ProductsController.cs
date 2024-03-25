@@ -44,7 +44,7 @@ namespace FakeStore.UI.Controllers
         // For Adding new product
         [HttpGet]
         [Route("[Action]")]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller, Admin")]
         public IActionResult AddNewProd()
         {
             return View(new AddProductDTO());
@@ -52,7 +52,7 @@ namespace FakeStore.UI.Controllers
 
         [HttpPost]
         [Route("[Action]")]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller, Admin")]
         public async Task<IActionResult> AddNewProd(AddProductDTO addProd)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -207,6 +207,10 @@ namespace FakeStore.UI.Controllers
 
             HttpResponseMessage responseMessage = await client.SendAsync(requestMessage);
             string response = await responseMessage.Content.ReadAsStringAsync();
+            if (string.IsNullOrEmpty(response))
+            {
+                return View("NoPurchaseYet");
+            }
             List<Product>? purchasedProducts = JsonConvert.DeserializeObject<List<Product>>(response);
             purchasedProducts.Reverse();
             return View(purchasedProducts);
