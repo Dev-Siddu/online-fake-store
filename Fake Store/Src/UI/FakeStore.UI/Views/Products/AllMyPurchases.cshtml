@@ -1,0 +1,43 @@
+﻿@model List<Models.Entities.Product>;
+@{
+    ViewBag.Title = "Products";
+    <style>
+        .prd-shadow {
+            box-shadow: 0px 5px 5px grey;
+        }
+    </style>
+}
+<div>
+    @foreach (var product in Model)
+    {
+        <div class="container w-75 m-3 p-3 prd-shadow">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-around w-100 w-md-100 ">
+                        <img class="img-fluid mr-3" src="@product.ImagePath" width="250" alt="Image not found / loaded" />
+                        <div class="row w-50 fs-3">
+                            <a asp-action="BuyNowDetails" asp-controller="Products" asp-route-ProdID="@product.ID" class="nav-link active">
+                            <div class="col-12 f-bold text-success" title="click to see details">@product.Name</div>
+                            </a>
+                            <div class="col-12">@product.Description</div>
+                            @if (product.Rating != null)
+                            {
+                                <div class="col-12">
+                                    <span>@product.Rating.Rate <b class="text-success">&#9733;</b> </span> &nbsp;
+                                    <span>[ @product.Rating.count ]</span>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="fs-3 ">
+                            <div class="col-12 text-primary">&#8377;@product.Price</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 ">
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

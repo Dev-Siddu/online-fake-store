@@ -134,14 +134,16 @@ namespace FakeStoreUI.Controllers
 
             if (response.Content == null) return StatusCode(500);
             string responseContent = await response.Content.ReadAsStringAsync();
-            Tuple<int, string,string,string>? responseTuple = JsonConvert.DeserializeObject<Tuple<int, string,string, string>>(responseContent);
+
+            //Tuple<int,int?, string, string, string> : isValidUser, Id, Role, Name, ImageName
+            Tuple<int,int?, string,string,string>? responseTuple = JsonConvert.DeserializeObject<Tuple<int, int?,string,string, string>>(responseContent);
 
             if (responseTuple == null)
             {
                 ViewBag.Message = 0;
                 return View(loginCredentials);
             }
-            else if (responseTuple.Item1 == 0)
+            else if (responseTuple.Item1 == 0 || responseTuple.Item2 == null)
             {
                 ViewBag.Message = 0;
                 return View(loginCredentials);
@@ -155,10 +157,11 @@ namespace FakeStoreUI.Controllers
             var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name,loginCredentials.EmailOrPhone),
-                    new Claim(ClaimTypes.Role,responseTuple.Item2 ),
+                    new Claim(ClaimTypes.Role,responseTuple.Item3 ),
 
-                    new Claim("UserName",responseTuple.Item3),  // For userName
-                    new Claim("ImageName",responseTuple.Item4) // for UserImage
+                    new Claim("UserID",responseTuple.Item2?.ToString()),
+                    new Claim("UserName",responseTuple.Item4),  // For userName
+                    new Claim("ImageName",responseTuple.Item5) // for UserImage
                 };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principle = new ClaimsPrincipal(identity);
@@ -173,7 +176,6 @@ namespace FakeStoreUI.Controllers
                     IsPersistent = true
                     //IssuedUtc = <DateTimeOffset>,
                     //RedirectUri = <string>
-
                 };
             }
             else

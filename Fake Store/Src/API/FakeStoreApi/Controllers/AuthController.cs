@@ -12,16 +12,16 @@ namespace FakeStoreApi.Controllers
         [Route("[Action]")]
         public async Task<List<User>> getAllUsers()
         {
-            List<User>? users = await getAllDeserilizedusers();
+            List<User>? users = await All();
             return users;
         }
 
         [HttpPost]
         [Route("[Action]")]
-        public async Task<Tuple<int, string, string, string>> VerifyUser([FromBody] LoginDTO loginCredentials)
+        public async Task<Tuple<int, int?,string, string, string>> VerifyUser([FromBody] LoginDTO loginCredentials)
         {
-            //Tuple<int, string, string, string> : isValidUser, Role, Name, ImageName
-            if (loginCredentials == null) return new Tuple<int, string,string,string>(0, "","","");
+            //Tuple<int,int?, string, string, string> : isValidUser, Id, Role, Name, ImageName
+            if (loginCredentials == null) return new Tuple<int,int?, string,string,string>(0,null, "","","");
 
             int? comparer = null;
             // 0 - phone (Numeric)
@@ -37,12 +37,12 @@ namespace FakeStoreApi.Controllers
             }
             else
             {
-                return new Tuple<int, string, string, string>(0, "", "", ""); // invalid email or phone
+                return new Tuple<int,int?, string, string, string>(0, null,"", "", ""); // invalid email or phone
             }
 
-            List<User>? users = await getAllDeserilizedusers();
+            List<User>? users = await All();
             List<User>? validUsers = null;
-            if (users == null) return new Tuple<int, string, string, string>(0, "", "", "");
+            if (users == null) return new Tuple<int,int?, string, string, string>(0, null, "", "", "");
 
             if (comparer == 0)
             {
@@ -69,9 +69,9 @@ namespace FakeStoreApi.Controllers
 
             if (validUsers.Count == 1)
             {
-            return new Tuple<int, string,string, string>(1, validUsers[0].Role, validUsers[0].Name, validUsers[0].ImageName.Split(",")[0]);
+            return new Tuple<int, int?, string,string, string>(1, validUsers[0].Id, validUsers[0].Role, validUsers[0].Name, validUsers[0].ImageName.Split(",")[0]);
             }
-            return new Tuple<int, string, string, string>(0, "", "", "");
+            return new Tuple<int, int?,string, string, string>(0,null, "", "", "");
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace FakeStoreApi.Controllers
             int lastId = await getLastUserID();
             user.Id = lastId + 1;
 
-            List<User> users = await getAllDeserilizedusers();
+            List<User> users = await All();
             users.Add(user);
             await serilizeAndSaveUsers(users);
             return Ok();
@@ -121,14 +121,14 @@ namespace FakeStoreApi.Controllers
         [Route("[Action]")]
         public async Task<bool> isMailIDExists(string mailID)
         {
-            List<User>? users = await getAllDeserilizedusers();
+            List<User>? users = await All();
             if (users == null) return false;
             bool isExists = users.Where(temp => temp.Email.Equals(mailID)).Any();
             return isExists;
         }
 
         [NonAction]
-        public async Task<List<User>?> getAllDeserilizedusers()
+        public async Task<List<User>?> All()
         {
             string path = "DataStore/UserInformation.json";
             string serilizedUserInformation = await System.IO.File.ReadAllTextAsync(path);
@@ -148,7 +148,7 @@ namespace FakeStoreApi.Controllers
         [NonAction]
         public async Task<int> getLastUserID()
         {
-            List<User>? users = await getAllDeserilizedusers();
+            List<User>? users = await All();
             int lastId = users.Max(user => user.Id);
             return lastId;
         }
